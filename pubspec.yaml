@@ -1,0 +1,94 @@
+name: record_app
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  assets_audio_player:
+    git:
+      url: https://github.com/florent37/Flutter-AssetsAudioPlayer.git
+      ref: master
+  cached_network_image: ^3.1.0
+  carousel_slider: ^4.0.0
+  cloud_firestore: ^3.1.10
+  cupertino_icons: null
+  dio: ^4.0.0
+  expandable_text: ^2.2.0
+  file_picker: ^4.5.0
+  firebase_auth: ^3.3.9
+  firebase_core: ^1.13.1
+  firebase_messaging: ^11.2.8
+  firebase_storage: ^10.2.9
+  flushbar: ^1.10.4
+  flutter:
+    sdk: flutter
+  flutter_icons: ^1.1.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_offline: ^2.0.0
+  flutter_widget_from_html_core: ^0.6.1+4
+  get: ^4.6.1
+  global_configuration: ^2.0.0-nullsafety.1
+  google_fonts: ^2.3.1
+  http: ^0.13.3
+  image_picker: ^0.8.3
+  jwt_decoder: ^2.0.1
+  localstorage: ^4.0.0+1
+  permission_handler: ^8.1.4+2
+  provider: null
+  share_plus: ^3.1.0
+  shared_preferences: ^2.0.5
+  toast: ^0.1.5
+  video_player: ^2.2.19
+
+dev_dependencies:
+  build_runner: ^1.8.0
+  flutter_launcher_icons: ^0.9.1
+  flutter_native_splash: ^1.2.1
+  flutter_test:
+    sdk: flutter
+  json_annotation: 3.1.1
+  json_serializable: ^3.5.1
+
+dependency_overrides: null
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+# The following section is specific to Flutter.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/videos/
+    - assets/cfg/
+    - lang/
+
+# For generating splash screen
+flutter_native_splash:
+  image: assets/images/logo.png
+  color: "000000"
+
+flutter_icons:
+  image_path: assets/images/logo.png
+  android: true
+  ios: true
