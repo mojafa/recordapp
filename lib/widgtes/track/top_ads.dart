@@ -73,7 +73,7 @@ class _TopCarouselState extends State<TopCarousel> {
                 enableInfiniteScroll: true,
                 reverse: false,
                 autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 10),
+                autoPlayInterval: const Duration(seconds: 3),
                 autoPlayAnimationDuration: const Duration(seconds: 2),
                 autoPlayCurve: Curves.fastLinearToSlowEaseIn,
                 // enlargeCenterPage: true,

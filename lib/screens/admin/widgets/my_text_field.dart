@@ -5,6 +5,8 @@ TextFormField myTextField({String hint, Function(String) onChanged}) {
     onChanged: (val) {
       onChanged(val);
     },
+    maxLength: null,
+    maxLines: null,
     style: const TextStyle(fontSize: 12),
     decoration: InputDecoration(
         hintText: hint,

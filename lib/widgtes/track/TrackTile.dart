@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:intl/intl.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
@@ -67,7 +68,9 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  widget.track.time,
+                  DateFormat('dd/MMM/yyyy').format(
+                    DateTime.parse(widget.track.time),
+                  ),
                   style: TextStyle(
                       fontSize: 10.0,
                       color: Theme.of(context).colorScheme.primaryVariant),

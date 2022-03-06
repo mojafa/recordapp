@@ -9,6 +9,7 @@ import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/Track.dart';
 import 'package:record_app/providers/media_provider.dart';
 import 'package:record_app/screens/HomeScreen.dart';
+import 'package:record_app/widgtes/Common/my_loader.dart';
 import './widgets/my_text_field.dart';
 
 class AdminAddPodcast extends StatefulWidget {
@@ -21,21 +22,28 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
   File cover;
   String title;
   String description;
-  bool isAlbum = false;
   List<Track> tracks = [];
   List<String> descriptions = [];
-
+  List<String> names = [];
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Theme.of(context).iconTheme.color,
+          ),
           onPressed: () {
             Get.to(() => HomeScreen());
           },
         ),
-        title: Text('Add Podcast'),
+        elevation: 0,
+        title: Text(
+          'Add Audio',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Stack(
         children: [
@@ -80,18 +88,7 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
                 ),
               ),
             ),
-            // SizedBox(height: 15),
-            SwitchListTile(
-              value: isAlbum,
-              activeColor: Theme.of(context).primaryColor,
-              onChanged: (value) {
-                setState(() {
-                  isAlbum = value;
-                });
-                print(value);
-              },
-              title: Text('Upload as Album'),
-            ),
+            SizedBox(height: 15),
             myTextField(
                 hint: 'Title',
                 onChanged: (val) {
@@ -108,49 +105,17 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
                   });
                 }),
             SizedBox(height: 15),
-
             Text(
-              isAlbum ? 'Add Tracks' : 'Add audio file',
+              'Add Tracks',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 12,
               ),
             ),
             SizedBox(height: 5),
-            if (isAlbum)
-              ...List.generate(
-                tracks.length,
-                (index) => Row(
-                  children: [
-                    InkWell(
-                      onTap: () async {
-                        FilePickerResult result = await FilePicker.platform
-                            .pickFiles(allowMultiple: true);
-
-                        if (result != null) {
-                          audioFiles =
-                              result.paths.map((path) => File(path)).toList();
-                          setState(() {});
-                        } else {
-                          // User canceled the picker
-                        }
-                      },
-                      child: Container(
-                        color: Theme.of(context).cardColor,
-                        padding: EdgeInsets.all(25),
-                        child: Icon(Icons.music_note),
-                      ),
-                    ),
-                    SizedBox(width: 15),
-                    Expanded(
-                      child: myTextField(hint: 'Title'),
-                    ),
-                  ],
-                ),
-              ),
-            SizedBox(height: 15),
-            if (!isAlbum)
-              Row(
+            ...List.generate(
+              tracks.length,
+              (index) => Row(
                 children: [
                   InkWell(
                     onTap: () async {
@@ -172,12 +137,14 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
                     ),
                   ),
                   SizedBox(width: 15),
-                  if (audioFiles.length > 0)
-                    Text('${audioFiles.length} files selected'),
+                  Expanded(
+                    child: myTextField(hint: 'Title'),
+                  ),
                 ],
               ),
+            ),
             SizedBox(height: 15),
-            if (audioFiles.length == 0 && isAlbum)
+            if (audioFiles.length == 0)
               InkWell(
                 onTap: () async {
                   FilePickerResult result =
@@ -197,9 +164,12 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
                   child: Icon(Icons.music_note),
                 ),
               ),
-            if (isAlbum)
-              ...List.generate(audioFiles.length,
-                  (index) => albumAudioTile(audioFiles[index], index)),
+            ...List.generate(audioFiles.length, (index) {
+              descriptions.add('');
+              names.add('');
+
+              return albumAudioTile(audioFiles[index], index);
+            }),
             SizedBox(
               height: 60,
             ),
@@ -210,6 +180,9 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
               right: 0,
               child: InkWell(
                 onTap: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
                   List<String> trackurls = [];
                   final result = await FirebaseStorage.instance
                       .ref('covers/${DateTime.now().toIso8601String()}')
@@ -227,23 +200,39 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
                       .map((e) => Track(
                             trackurls.indexOf(e),
                             // descriptions[trackurls.indexOf(e)],
-                            'audio',
-                            null,
+                            names[trackurls.indexOf(e)],
+                            descriptions[trackurls.indexOf(e)],
                             trackurls[trackurls.indexOf(e)],
-                            '',
-                            '/storage/downloads/audios/${DateTime.now().toIso8601String()}',
+                            url,
+                            null,
                             DateTime.now().toIso8601String(),
                           ))
                       .toList();
 
                   print(trackList.first.toJson());
-                  await Provider.of<MediaProvider>(context, listen: false)
-                      .uploadMedia(Album(DateTime.now().millisecondsSinceEpoch,
-                          title, description, url, trackList));
+
+                  try {
+                    await Provider.of<MediaProvider>(context, listen: false)
+                        .uploadMedia(Album(
+                            DateTime.now().millisecondsSinceEpoch,
+                            title,
+                            description,
+                            url,
+                            trackList));
+                  } catch (e) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                  }
+
+                  setState(() {
+                    isLoading = false;
+                  });
+                  Navigator.of(context).pop();
+
                   await ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('Uploaded'),
                   ));
-                  Navigator.of(context).pop();
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 15),
@@ -252,10 +241,12 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
                       color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
-                    child: Text(
-                      'Upload',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child: isLoading
+                        ? MyLoader()
+                        : Text(
+                            'Upload',
+                            style: TextStyle(color: Colors.white),
+                          ),
                   ),
                 ),
               ))
@@ -295,7 +286,7 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).cardColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(5),
       ),
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -315,18 +306,48 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
               }
             },
             child: Container(
-              color: Theme.of(context).cardColor,
-              padding: EdgeInsets.all(25),
+              padding: EdgeInsets.all(10),
               child: Icon(Icons.music_note),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                shape: BoxShape.circle,
+              ),
             ),
+          ),
+          SizedBox(
+            width: 10,
           ),
           Expanded(
             child: Column(
               children: [
-                Text(file.path.split('/').last),
+                Row(
+                  children: [
+                    Text(file.path.split('/').last),
+                    Spacer(),
+                    InkWell(
+                      onTap: () {
+                        audioFiles.remove(file);
+                        setState(() {});
+                      },
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 10),
                 myTextField(
                     hint: 'Name of audio',
+                    onChanged: (val) {
+                      print(index);
+                      setState(() {
+                        names[index] = val;
+                      });
+                    }),
+                SizedBox(height: 10),
+                myTextField(
+                    hint: 'Subtitles',
                     onChanged: (val) {
                       print(index);
                       setState(() {
@@ -336,16 +357,6 @@ class _AdminAddPodcastState extends State<AdminAddPodcast> {
               ],
             ),
           ),
-          InkWell(
-            onTap: () {
-              audioFiles.remove(file);
-              setState(() {});
-            },
-            child: Icon(
-              Icons.delete,
-              color: Colors.red,
-            ),
-          )
         ],
       ),
     );
