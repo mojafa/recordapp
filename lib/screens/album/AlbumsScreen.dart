@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
+import 'package:record_app/models/Track.dart';
+import 'package:record_app/screens/album/list_album.dart';
 import 'package:record_app/widgtes/Album/AlbumTile.dart';
 import 'package:record_app/widgtes/Common/BaseScaffold.dart';
-import 'package:record_app/widgtes/track/top_ads.dart';
+import 'package:record_app/widgtes/track/my_carousel.dart';
 
 class AlbumsScreen extends StatelessWidget with BaseMixins {
   final ScrollController scrollController = new ScrollController();
@@ -20,6 +22,53 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
         },
         child: AlbumTile(album: album),
       );
+  List<Album> staticAlbums = [
+    Album(
+        1,
+        'Fariinta Musharraxa',
+        audio1,
+        'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_1.png?alt=media&token=8447a884-b2b5-40f2-9e12-c18ce938750a',
+        [
+          Track(
+              1,
+              'Fariinta Musharraxa',
+              audio1,
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Intro_1.mp3?alt=media&token=2204a9ad-ebf8-4b38-acc3-aeb21842cfa4',
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_1.png?alt=media&token=8447a884-b2b5-40f2-9e12-c18ce938750a',
+              null,
+              '2022-03-06T08:09:24.775929')
+        ]),
+    Album(
+        2,
+        'Hordhac',
+        '',
+        'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_2.png?alt=media&token=d1f82f09-8e16-4547-ac4c-a2fa2dba9a36',
+        [
+          Track(
+              2,
+              'Hordhac',
+              audio2,
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Intro_2.mp3?alt=media&token=801935ac-6f81-46df-ab78-375db3781250',
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_2.png?alt=media&token=d1f82f09-8e16-4547-ac4c-a2fa2dba9a36',
+              null,
+              '2022-03-06T08:09:24.775929')
+        ]),
+    Album(
+        3,
+        'Gunaanad',
+        '',
+        'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/conclusion.png?alt=media&token=4fb07ef1-0399-4fda-b454-469f56690acb',
+        [
+          Track(
+              2,
+              'Gunaanad',
+              audio3,
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Conclusion.mp3?alt=media&token=f9dbe465-94f0-4fd6-a3a1-49f460b2ba56',
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/conclusion.png?alt=media&token=4fb07ef1-0399-4fda-b454-469f56690acb',
+              null,
+              '2022-03-06T08:09:24.775929')
+        ]),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -96,49 +145,82 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          Column(
-                            children: [
-                              Container(
-                                height: size.height * .2,
-                                margin: EdgeInsets.symmetric(horizontal: 10),
-                                width: 150,
-                                child: Image.asset(
-                                  'assets/images/title1.jpeg',
-                                  fit: BoxFit.cover,
-                                ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                AppRoutes.albumDetail,
+                                arguments: staticAlbums[0],
+                              );
+                            },
+                            child: SizedBox(
+                              width: 150,
+                              child: AlbumTile(
+                                album: staticAlbums[0],
+                                // isAsset: true,
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Farriinta Musharraxa',
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                            ],
+                            ),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 15,
                           ),
-                          Column(
-                            children: [
-                              Container(
-                                height: size.height * .2,
-                                margin: EdgeInsets.symmetric(horizontal: 10),
-                                width: 150,
-                                child: Image.asset(
-                                  'assets/images/title2.jpeg',
-                                  fit: BoxFit.cover,
-                                ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                AppRoutes.albumDetail,
+                                arguments: staticAlbums[1],
+                              );
+                            },
+                            child: SizedBox(
+                              width: 150,
+                              child: AlbumTile(
+                                album: staticAlbums[1],
+                                // isAsset: true,
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Hordhac',
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                            ],
+                            ),
                           ),
+                          // Column(
+                          //   children: [
+                          //     Container(
+                          //       height: size.height * .2,
+                          //       margin: EdgeInsets.symmetric(horizontal: 10),
+                          //       width: 150,
+                          //       child: Image.asset(
+                          //         'assets/images/title1.jpeg',
+                          //         fit: BoxFit.cover,
+                          //       ),
+                          //     ),
+                          //     SizedBox(
+                          //       height: 10,
+                          //     ),
+                          //     Text(
+                          //       'Farriinta Musharraxa',
+                          //       style: TextStyle(fontWeight: FontWeight.w500),
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(
+                          //   width: 10,
+                          // ),
+                          // Column(
+                          //   children: [
+                          //     Container(
+                          //       height: size.height * .2,
+                          //       margin: EdgeInsets.symmetric(horizontal: 10),
+                          //       width: 150,
+                          //       child: Image.asset(
+                          //         'assets/images/title2.jpeg',
+                          //         fit: BoxFit.cover,
+                          //       ),
+                          //     ),
+                          //     SizedBox(
+                          //       height: 10,
+                          //     ),
+                          //     Text(
+                          //       'Hordhac',
+                          //       style: TextStyle(fontWeight: FontWeight.w500),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -200,7 +282,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       margin: EdgeInsets.symmetric(vertical: 5),
                       child: Text('CHAPTERS',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Theme.of(context).iconTheme.color,
                             fontWeight: FontWeight.bold,
                           )),
@@ -277,6 +359,37 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                         );
                       },
                     ),
+                    SizedBox(height: 10),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      child: Text('CONCLUSION',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).iconTheme.color,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                    SizedBox(height: 10),
+                    SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                AppRoutes.albumDetail,
+                                arguments: staticAlbums[2],
+                              );
+                            },
+                            child: SizedBox(
+                              width: 150,
+                              child: AlbumTile(
+                                album: staticAlbums[0],
+                                // isAsset: true,
+                              ),
+                            ),
+                          ),
+                        ])),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),

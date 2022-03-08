@@ -98,6 +98,7 @@ class TrackContainer extends StatelessWidget with BaseMixins {
                           track: album.tracks[index],
                           index: index,
                           album: album,
+                          isDownloadTile: true,
                         )
                       : Container();
                 },

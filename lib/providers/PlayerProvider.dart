@@ -206,6 +206,8 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
       } else {
         _isTrackLoaded = false;
         notifyListeners();
+        _currentAlbum = album;
+
         track.localPath != null
             ? await player.open(Audio.file(track.localPath))
             // : await _open(track);

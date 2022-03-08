@@ -1,9 +1,12 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Track.dart';
+import 'package:record_app/providers/DownloadProvider.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
+import 'package:record_app/screens/Track/TrackDetailsScreen.dart';
 import 'package:record_app/widgtes/Common/Animations/AnimationRotate.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 import 'package:record_app/widgtes/PositionSeekWidget.dart';
@@ -18,6 +21,7 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     var playerProvider = Provider.of<PlayerProvider>(context);
+
     playerProvider.audioSessionListener();
     return Scaffold(
       body: PlayerBuilder.realtimePlayingInfos(
@@ -215,22 +219,53 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
 
   Row buildPlayerBttomActions(
       BuildContext context, PlayerProvider playerProvider, Track track) {
+    DownloadProvider downloadProvider = Provider.of<DownloadProvider>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
+        IconButton(
+          onPressed: () {
+            downloadProvider.isDownloadSong(track)
+                ? downloadProvider.removeSong(track)
+                : downloadProvider.downloadAudio(track, context);
+            ;
+          },
+          icon: Icon(
+            Icons.download_for_offline_outlined,
+            size: 30,
+            color: downloadProvider.isDownloadSong(track) ? primary : null,
+          ),
+        ),
+        // IconButton(
+        //   icon: Icon(Icons.shuffle),
+        //   color: activeColor(context, playerProvider.shuffled),
+        //   onPressed: () => playerProvider.handleShuffle(),
+        // ),
         TrackFavouriteButton(track: track),
         IconButton(
-          icon: Icon(Icons.shuffle),
-          color: activeColor(context, playerProvider.shuffled),
-          onPressed: () => playerProvider.handleShuffle(),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    TrackDetailsScreen(track: track),
+              ),
+            );
+          },
+          icon: Icon(
+            Icons.subtitles_outlined,
+            size: 30,
+          ),
         ),
-        IconButton(
-          icon: Icon(!playerProvider.loopPlaylist && playerProvider.loopMode
-              ? Icons.repeat_one
-              : Icons.repeat),
-          color: activeColor(context, playerProvider.loopMode),
-          onPressed: () => playerProvider.handleLoop(),
-        ),
+
+        // IconButton(
+        //   icon: Icon(!playerProvider.loopPlaylist && playerProvider.loopMode
+        //       ? Icons.repeat_one
+        //       : Icons.repeat),
+        //   color: activeColor(context, playerProvider.loopMode),
+        //   onPressed: () => playerProvider.handleLoop(),
+        // ),
       ],
     );
   }

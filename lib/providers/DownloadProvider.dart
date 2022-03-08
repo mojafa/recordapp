@@ -99,6 +99,7 @@ class DownloadProvider extends BaseProvider with BaseMixins {
             messageText: Text($t(context, 'complete_msg')),
           ).show(context);
           song.localPath = downloadPath;
+// TODO: Firebase set local path
           addToDownloadSong(song);
           notifyListeners();
         }

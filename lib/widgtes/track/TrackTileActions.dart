@@ -49,17 +49,16 @@ class TrackTileActions extends StatelessWidget with BaseMixins {
           value: 'details',
           child: Text('$title'),
         ),
-        cfg.getValue("allowDownload")
-            ? downloadProvider.isDownloadSong(track)
-                ? PopupMenuItem<String>(
-                    value: 'remove',
-                    child: Text($t(context, 'remove')),
-                  )
-                : PopupMenuItem<String>(
-                    value: 'download',
-                    child: Text($t(context, 'downloading')),
-                  )
-            : null
+        // cfg.getValue("allowDownload")
+        downloadProvider.isDownloadSong(track)
+            ? PopupMenuItem<String>(
+                value: 'remove',
+                child: Text($t(context, 'remove')),
+              )
+            : PopupMenuItem<String>(
+                value: 'download',
+                child: Text($t(context, 'downloading')),
+              )
       ],
     );
   }

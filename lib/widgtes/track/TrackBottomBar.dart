@@ -88,20 +88,25 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                   );
                                 }),
                             SizedBox(width: 15),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(track.title,
-                                    style: TextStyle(fontSize: 14)),
-                                SizedBox(height: 5),
-                                Text(
-                                  'Admin',
-                                  style: TextStyle(fontSize: 10),
-                                ),
-                              ],
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: Text(track.title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(fontSize: 14)),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    'Admin',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Spacer(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,11 +119,15 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                       : Theme.of(context).primaryColor,
                                   onPressed: () {
                                     playerProvider.prev();
+                                    setState(() {});
                                   },
                                 ),
                                 TrackPlayButton(
                                   track: track,
-                                  onPressed: () => playerProvider.playOrPause(),
+                                  onPressed: () {
+                                    playerProvider.playOrPause();
+                                    setState(() {});
+                                  },
                                 ),
                                 IconButton(
                                   icon: Icon(SimpleLineIcons.control_forward),
@@ -132,6 +141,7 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                         playerProvider.currentIndex + 1))
                                       return;
                                     playerProvider.next();
+                                    setState(() {});
                                   },
                                 )
                               ],

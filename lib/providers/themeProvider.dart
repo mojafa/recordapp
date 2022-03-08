@@ -9,7 +9,7 @@ class ThemeProvider extends ChangeNotifier {
   bool get darkMode => _darkMode;
 
   ThemeProvider() {
-    _darkMode = true;
+    _darkMode = false;
     _loadFromPreferences();
   }
 

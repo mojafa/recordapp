@@ -6,6 +6,7 @@ class BaseImage extends StatelessWidget {
   final double height;
   final double width;
   final double radius;
+  final bool isAsset;
   final int heroId;
   final bool overlay;
   final List<double> overlayStops;
@@ -16,6 +17,7 @@ class BaseImage extends StatelessWidget {
       this.width,
       this.radius,
       this.heroId,
+      this.isAsset = false,
       overlay,
       overlayStops,
       overlayOpacity})
@@ -40,21 +42,26 @@ class BaseImage extends StatelessWidget {
         ),
       );
 
-  _buildImage() => CachedNetworkImage(
-        imageUrl: imageUrl,
-        fit: BoxFit.fitHeight,
-        height: height,
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.all(Radius.circular(radius == null ? 5 : radius)),
-            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+  _buildImage() => isAsset
+      ? Image.asset(
+          imageUrl,
+          fit: BoxFit.cover,
+        )
+      : CachedNetworkImage(
+          imageUrl: imageUrl,
+          fit: BoxFit.fitHeight,
+          height: height,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                  Radius.circular(radius == null ? 5 : radius)),
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            ),
           ),
-        ),
-        width: width,
-        placeholder: (context, url) => Container(),
-        errorWidget: (context, url, error) => Image.asset('assets/you.jpg'),
-      );
+          width: width,
+          placeholder: (context, url) => Container(),
+          errorWidget: (context, url, error) => Image.asset('assets/you.jpg'),
+        );
 
   @override
   Widget build(BuildContext context) {

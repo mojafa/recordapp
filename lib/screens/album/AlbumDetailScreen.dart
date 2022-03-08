@@ -6,6 +6,7 @@ import 'package:record_app/models/Album.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
 import 'package:record_app/widgtes/Album/AlbumFavouriteButton.dart';
 import 'package:record_app/widgtes/Common/BaseConnectivity.dart';
+import 'package:record_app/widgtes/Common/BaseScaffold.dart';
 import 'package:record_app/widgtes/common/BaseImage.dart';
 
 import 'package:record_app/widgtes/track/TrackTile.dart';
@@ -115,33 +116,37 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
     Album album = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      body: BaseConnectivity(
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              expandedHeight: heightScreen / 2.0,
-              pinned: true,
-              floating: false,
-              elevation: 1,
-              snap: false,
-              actions: <Widget>[],
-              flexibleSpace: new FlexibleSpaceBar(
-                background: _buildContent(album, playerProvider),
+      body: BaseScaffold(
+        isLoaded: true,
+        child: BaseConnectivity(
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                expandedHeight: heightScreen / 2.0,
+                pinned: true,
+                floating: false,
+                elevation: 1,
+                snap: false,
+                actions: <Widget>[],
+                flexibleSpace: new FlexibleSpaceBar(
+                  background: _buildContent(album, playerProvider),
+                ),
               ),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return TrackTile(
-                    track: album.tracks[index],
-                    index: index,
-                    album: album,
-                  );
-                },
-                childCount: album.tracks.length,
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return TrackTile(
+                      track: album.tracks[index],
+                      index: index,
+                      album: album,
+                      isDownloadTile: true,
+                    );
+                  },
+                  childCount: album.tracks.length,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

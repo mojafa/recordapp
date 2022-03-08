@@ -6,6 +6,7 @@ import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/Track.dart';
+import 'package:record_app/providers/DownloadProvider.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 import 'package:record_app/widgtes/track/TrackFavouriteButton.dart';
@@ -32,6 +33,7 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
   @override
   Widget build(BuildContext context) {
     PlayerProvider p = Provider.of<PlayerProvider>(context);
+    final d = Provider.of<DownloadProvider>(context);
 
     return PlayerBuilder.isPlaying(
       player: p.player,

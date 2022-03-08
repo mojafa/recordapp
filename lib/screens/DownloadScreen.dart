@@ -14,13 +14,14 @@ class DownloadScreen extends StatelessWidget with BaseMixins {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: BaseAppBar(),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: const Size.fromHeight(50),
+      //   child: BaseAppBar(),
+      // ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: MediaQuery.of(context).padding.top),
           BaseScreenHeading(title: $t(context, 'download')),
           Expanded(
               child: Container(
@@ -48,11 +49,10 @@ class TrackContainer extends StatelessWidget with BaseMixins {
                       Album album = new Album(null, $t(context, 'download'),
                           null, null, downloadProvider.downloadSongs);
                       return TrackTile(
-                        track: album.tracks[index],
-                        index: index,
-                        album: album,
-                        isDownloadTile: true,
-                      );
+                          track: album.tracks[index],
+                          index: index,
+                          album: album,
+                          isDownloadTile: true);
                     },
                   )
                 : CustomCircularProgressIndicator()

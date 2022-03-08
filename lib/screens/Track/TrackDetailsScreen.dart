@@ -36,7 +36,7 @@ class TrackDetailsScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(20),
               child: Text(
-                'Hassan Ali Khaire',
+                track.content,
                 style: TextStyle(height: 1.4),
               ),
             )

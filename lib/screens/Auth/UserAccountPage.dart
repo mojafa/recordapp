@@ -5,7 +5,10 @@ import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/providers/AuthProvider.dart';
 import 'package:record_app/providers/ThemeProvider.dart';
+import 'package:record_app/screens/DownloadScreen.dart';
 import 'package:record_app/screens/admin/admin_add_podcast.dart';
+import 'package:record_app/screens/contact/about_page.dart';
+import 'package:record_app/screens/contact/contact_page.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 import 'package:record_app/widgtes/Common/CustomCircularProgressIndicator.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -64,8 +67,7 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                                   size: 22,
                                 ),
                                 onTap: () {
-                                  Share.share(
-                                      'The appstore and play store links will be here');
+                                  Get.to(() => DownloadScreen());
                                 },
                               ),
                               Divider(height: 0),
@@ -75,40 +77,43 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                                   Icons.share,
                                   size: 22,
                                 ),
-                                onTap: null,
+                                onTap: () {
+                                  Share.share(
+                                      'The appstore and play store links will be here');
+                                },
                               ),
-                              Divider(height: 0),
-                              ListTile(
-                                title: FirebaseAuth.instance.currentUser != null
-                                    ? Text('Admin Panel')
-                                    : Text($t(context, 'sign_in')),
-                                leading: Icon(
-                                  Icons.verified_user,
-                                  size: 22,
-                                ),
-                                onTap: FirebaseAuth.instance.currentUser != null
-                                    ? () => Get.to(() => AdminAddPodcast())
-                                    : () => Navigator.pushNamed(
-                                        context, AppRoutes.loginRoute),
-                              ),
-                              Divider(height: 0),
-                              if (FirebaseAuth.instance.currentUser == null)
-                                ListTile(
-                                  title: Text($t(
-                                    context,
-                                    'create_new_Account',
-                                  )),
-                                  leading: Icon(
-                                    Icons.account_circle,
-                                    size: 22,
-                                  ),
-                                  onTap: () => Navigator.pushNamed(
-                                      context, AppRoutes.registerRoute),
-                                ),
+                              // Divider(height: 0),
+                              // ListTile(
+                              //   title: FirebaseAuth.instance.currentUser != null
+                              //       ? Text('Admin Panel')
+                              //       : Text($t(context, 'sign_in')),
+                              //   leading: Icon(
+                              //     Icons.verified_user,
+                              //     size: 22,
+                              //   ),
+                              //   onTap: FirebaseAuth.instance.currentUser != null
+                              //       ? () => Get.to(() => AdminAddPodcast())
+                              //       : () => Navigator.pushNamed(
+                              //           context, AppRoutes.loginRoute),
+                              // ),
+                              // Divider(height: 0),
+                              // if (FirebaseAuth.instance.currentUser == null)
+                              //   ListTile(
+                              //     title: Text($t(
+                              //       context,
+                              //       'create_new_Account',
+                              //     )),
+                              //     leading: Icon(
+                              //       Icons.account_circle,
+                              //       size: 22,
+                              //     ),
+                              //     onTap: () => Navigator.pushNamed(
+                              //         context, AppRoutes.registerRoute),
+                              //   ),
                             ],
                           ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   if (provider.isLoggedIn)
                     Card(
                       elevation: 2,
@@ -153,38 +158,22 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                     ),
                     child: Column(
                       children: <Widget>[
-                        cfg.getValue("allowDownload")
-                            ? ListTile(
-                                title: Text($t(context, 'download')),
-                                leading: Icon(
-                                  Icons.download_sharp,
-                                  size: 22,
-                                ),
-                                onTap: () => {
-                                  Navigator.pushNamed(
-                                      context, AppRoutes.downloadScreenRoute)
-                                },
-                              )
-                            : Divider(
-                                height: 0,
-                              ),
-                        ListTile(
-                          title: Text($t(context, 'help')),
-                          leading: Icon(
-                            Icons.help,
-                            size: 22,
-                          ),
-                          onTap: () => {},
-                        ),
-                        ListTile(
-                          title: Text($t(context, 'rate')),
-                          leading: Icon(
-                            Icons.star,
-                            size: 22,
-                          ),
-                          onTap: () => {},
-                        ),
-                        Divider(height: 0),
+                        // cfg.getValue("allowDownload")
+                        //     ? ListTile(
+                        //         title: Text($t(context, 'download')),
+                        //         leading: Icon(
+                        //           Icons.download_sharp,
+                        //           size: 22,
+                        //         ),
+                        //         onTap: () => {
+                        //           Navigator.pushNamed(
+                        //               context, AppRoutes.downloadScreenRoute)
+                        //         },
+                        //       )
+                        //     :
+                        //      Divider(
+                        //         height: 0,
+                        //       ),
                         ListTile(
                           title: Text($t(
                             context,
@@ -194,8 +183,26 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                             Icons.info,
                             size: 22,
                           ),
+                          onTap: () => {Get.to(() => AboutScreen())},
+                        ),
+                        Divider(height: 0),
+                        ListTile(
+                          title: Text($t(context, 'rate')),
+                          leading: Icon(
+                            Icons.star,
+                            size: 22,
+                          ),
                           onTap: () => {},
                         ),
+                        // Divider(height: 0),
+                        // ListTile(
+                        //   title: Text($t(context, 'Contact us')),
+                        //   leading: Icon(
+                        //     Icons.help,
+                        //     size: 22,
+                        //   ),
+                        //   onTap: () => {Get.to(() => ContactPage())},
+                        // ),
                       ],
                     ),
                   ),

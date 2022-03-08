@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -8,11 +7,8 @@ import 'package:record_app/config/AppTheme.dart';
 import 'package:record_app/firebase_options.dart';
 import 'package:record_app/image_splash.dart';
 import 'package:record_app/providers/ThemeProvider.dart';
-import 'package:record_app/screens/HomeScreen.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:provider/provider.dart';
-import 'package:record_app/screens/admin/admin_add_podcast.dart';
-import 'package:record_app/splash_screen.dart';
 import 'config/Applocalizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -36,7 +32,7 @@ class MyApp extends StatelessWidget {
           builder: (context, value, child) {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Rekord App',
+              title: 'Khaire',
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               routes: AppRoutes().routes(),
