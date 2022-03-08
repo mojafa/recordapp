@@ -290,7 +290,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                     Row(
                       children: [
                         Container(
-                          width: 100,
+                          width: 80,
                           height: 5,
                           decoration: BoxDecoration(
                             color: Colors.green,
@@ -368,6 +368,18 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                             color: Theme.of(context).iconTheme.color,
                             fontWeight: FontWeight.bold,
                           )),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 10),
                     SingleChildScrollView(

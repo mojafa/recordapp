@@ -124,6 +124,7 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                 ),
                                 TrackPlayButton(
                                   track: track,
+                                  isBottom: true,
                                   onPressed: () {
                                     playerProvider.playOrPause();
                                     setState(() {});

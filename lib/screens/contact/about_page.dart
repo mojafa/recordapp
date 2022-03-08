@@ -38,7 +38,7 @@ class AboutScreen extends StatelessWidget {
                     ]),
                   ),
                   child: CircleAvatar(
-                    radius: 40,
+                    radius: 45,
                     backgroundImage: AssetImage('assets/images/title1.jpeg'),
                   ),
                 ),

@@ -12,8 +12,14 @@ class TrackPlayButton extends StatelessWidget {
   final Track track;
   final Album album;
   final int index;
+  final bool isBottom;
 
-  TrackPlayButton({this.onPressed, this.track, this.album, this.index});
+  TrackPlayButton(
+      {this.onPressed,
+      this.track,
+      this.album,
+      this.index,
+      this.isBottom = false});
 
   @override
   Widget build(BuildContext context) {
@@ -23,33 +29,48 @@ class TrackPlayButton extends StatelessWidget {
         player: p.player,
         builder: (context, isPlaying) {
           return SizedBox(
-            height: 40,
-            width: 40,
-            child: !p.isTrackLoaded && p.tIndex == index
-                ? Padding(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).primaryColor),
-                    ),
-                    padding: EdgeInsets.all(10))
-                : IconButton(
-                    color: Theme.of(context).primaryColor,
-                    icon: p.isTrackInProgress(track) ||
-                            p.isLocalTrackInProgress(track.localPath)
-                        ? Icon(AntDesign.pausecircleo)
-                        : Icon(
-                            SimpleLineIcons.control_play,
-                          ),
-                    onPressed: () => onPressed != null
-                        ? onPressed()
-                        : p.handlePlayButton(
-                            album: album,
-                            track: track,
-                            index: index,
-                            //search results list
-                          )),
-          );
+              height: 40,
+              width: 40,
+              child: !p.isTrackLoaded && p.tIndex == index
+                  ? Padding(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Theme.of(context).primaryColor),
+                      ),
+                      padding: EdgeInsets.all(10))
+                  : (isBottom
+                      ? IconButton(
+                          color: Theme.of(context).primaryColor,
+                          icon: isPlaying
+                              ? Icon(AntDesign.pausecircleo)
+                              : Icon(
+                                  SimpleLineIcons.control_play,
+                                ),
+                          onPressed: () => onPressed != null
+                              ? onPressed()
+                              : p.handlePlayButton(
+                                  album: album,
+                                  track: track,
+                                  index: index,
+                                  //search results list
+                                ))
+                      : IconButton(
+                          color: Theme.of(context).primaryColor,
+                          icon: p.isTrackInProgress(track) ||
+                                  p.isLocalTrackInProgress(track.localPath)
+                              ? Icon(AntDesign.pausecircleo)
+                              : Icon(
+                                  SimpleLineIcons.control_play,
+                                ),
+                          onPressed: () => onPressed != null
+                              ? onPressed()
+                              : p.handlePlayButton(
+                                  album: album,
+                                  track: track,
+                                  index: index,
+                                  //search results list
+                                ))));
         });
   }
 }
