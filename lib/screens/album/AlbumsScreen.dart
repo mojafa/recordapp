@@ -48,7 +48,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
               2,
               'Hordhac',
               audio2,
-              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Intro_2.mp3?alt=media&token=801935ac-6f81-46df-ab78-375db3781250',
+              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Intro_2.mp3?alt=media&token=0c8324de-7e60-4844-b38c-97746769ecb5',
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_2.png?alt=media&token=d1f82f09-8e16-4547-ac4c-a2fa2dba9a36',
               null,
               '2022-03-06T08:09:24.775929')
@@ -401,7 +401,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                             ),
                           ),
                         ])),
-                    SizedBox(height: 20),
+                    SizedBox(height: 50),
                   ],
                 ),
               ),

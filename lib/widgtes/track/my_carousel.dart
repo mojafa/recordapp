@@ -47,7 +47,7 @@ class _TopCarouselState extends State<TopCarousel> {
           options: CarouselOptions(
             //height: 400,
             aspectRatio: 16 / 9,
-            viewportFraction: 0.9,
+            viewportFraction: widget.isAbout ? 1 : 0.9,
             enlargeCenterPage: true,
             enableInfiniteScroll: true,
             enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -59,15 +59,19 @@ class _TopCarouselState extends State<TopCarousel> {
           itemBuilder: (context, index, realIndex) {
             final urlImage =
                 widget.isAbout ? urlImagesAbout[index] : urlImages[index];
-            return BaseImage(
-              imageUrl: urlImage,
-              isAsset: true,
-              height: size.height * 0.33,
-              width: size.width,
-              radius: 0,
-              overlay: true,
-              overlayOpacity: 0.001,
-              overlayStops: [0.3, 0.8],
+            return Container(
+              margin:
+                  widget.isAbout ? EdgeInsets.symmetric(horizontal: 5.0) : null,
+              child: BaseImage(
+                imageUrl: urlImage,
+                isAsset: true,
+                height: size.height * 0.33,
+                width: size.width,
+                radius: 0,
+                overlay: !widget.isAbout,
+                overlayOpacity: 0.001,
+                overlayStops: [0.3, 0.8],
+              ),
             );
           },
         ),

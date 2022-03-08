@@ -17,20 +17,14 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     // ignore: missing_enum_constant_in_switch
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -43,11 +37,31 @@ class DefaultFirebaseOptions {
     );
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCbQJvhrQQOrEJUwoRiJI_eVpchHKxCRco',
+    appId: '1:569135116717:web:45f6759b8d14c2f751f124',
+    messagingSenderId: '569135116717',
+    projectId: 'audio-project-b56de',
+    authDomain: 'audio-project-b56de.firebaseapp.com',
+    storageBucket: 'audio-project-b56de.appspot.com',
+    measurementId: 'G-KPTBJJS9SS',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCGDcnngnk7JOWobofJOCcFw2_uMQlfmoI',
-    appId: '1:587975170261:android:5f3ae3c3b7536babc3ea5c',
-    messagingSenderId: '587975170261',
-    projectId: 'electron-app-e69e8',
-    storageBucket: 'electron-app-e69e8.appspot.com',
+    apiKey: 'AIzaSyDrIWQYagb5-BZkeorNNP5rzwbSVls6fK8',
+    appId: '1:569135116717:android:808870a9391ae7da51f124',
+    messagingSenderId: '569135116717',
+    projectId: 'audio-project-b56de',
+    storageBucket: 'audio-project-b56de.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDrZVWIqWsyc_JiYLY9EXb_3RDXlJTkFYE',
+    appId: '1:569135116717:ios:deaa3f65be0c43e151f124',
+    messagingSenderId: '569135116717',
+    projectId: 'audio-project-b56de',
+    storageBucket: 'audio-project-b56de.appspot.com',
+    iosClientId: '569135116717-d0tgnr8qv2g0l769e4d7mu1m6q2e1558.apps.googleusercontent.com',
+    iosBundleId: 'com.khaire.app',
   );
 }

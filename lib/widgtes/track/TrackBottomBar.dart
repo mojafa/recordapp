@@ -141,7 +141,7 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                     if (playerProvider.isLastTrack(
                                         playerProvider.currentIndex + 1))
                                       return;
-                                    playerProvider.next();
+                                    // playerProvider.next();
                                     setState(() {});
                                   },
                                 )
