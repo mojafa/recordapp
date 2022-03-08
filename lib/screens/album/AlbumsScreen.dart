@@ -412,7 +412,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                   child: Container(
                     width: size.width,
                     color: Colors.blue,
-                    padding: EdgeInsets.symmetric(vertical: 3),
+                    padding: EdgeInsets.symmetric(vertical: 5),
                     child: Center(
                       child: Text(
                           'Mudane Hassan Ali Khaire | Musharrax Madaxwenye 2022-2026',
