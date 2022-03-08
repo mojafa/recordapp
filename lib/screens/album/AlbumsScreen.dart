@@ -383,7 +383,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                             child: SizedBox(
                               width: 150,
                               child: AlbumTile(
-                                album: staticAlbums[0],
+                                album: staticAlbums[2],
                                 // isAsset: true,
                               ),
                             ),
