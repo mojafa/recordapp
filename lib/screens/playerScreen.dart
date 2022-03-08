@@ -154,7 +154,7 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
                     height: 6.0,
                   ),
                   Text(
-                    'Admin',
+                    'Hassan Khaire',
                     style: TextStyle(fontSize: 14.0),
                   ),
                   SizedBox(height: 6.0),

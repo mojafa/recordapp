@@ -31,7 +31,7 @@ class TrackDetailsScreen extends StatelessWidget {
                       Icons.library_music,
                       size: 36,
                     ),
-              subtitle: Text('Admin'),
+              subtitle: Text('AdmHassan Khairein'),
             ),
             Container(
               padding: EdgeInsets.all(20),
