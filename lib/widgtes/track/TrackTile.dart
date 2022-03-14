@@ -12,6 +12,22 @@ import 'package:provider/provider.dart';
 
 import 'TrackPlayButton.dart';
 
+String formatedTime(int secTime) {
+  String getParsedTime(String time) {
+    if (time.length <= 1) return "0$time";
+    return time;
+  }
+
+  int min = secTime ~/ 60;
+  int sec = secTime % 60;
+
+  String parsedTime =
+      getParsedTime(min.toString()) + " : " + getParsedTime(sec.toString());
+  print(parsedTime);
+
+  return parsedTime;
+}
+
 class TrackTile extends StatefulWidget {
   final bool isDownloadTile;
   final Album album;
@@ -67,9 +83,7 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  DateFormat('dd/MMM/yyyy').format(
-                    DateTime.parse(widget.track.time),
-                  ),
+                  formatedTime(int.parse(widget.track.time)),
                   style: TextStyle(
                       fontSize: 10.0,
                       color: Theme.of(context).colorScheme.primaryVariant),

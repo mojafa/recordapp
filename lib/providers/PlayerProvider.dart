@@ -79,13 +79,9 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
 
       play(0);
     } else if (!action && _loopMode && !_loopPlaylist) {
-      player.next();
-
       setPlaying(_currentAlbum, _currentIndex);
       play(_currentIndex);
     } else {
-      player.next();
-
       play(next);
     }
   }
@@ -93,7 +89,6 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
   prev() {
     int pre = _currentIndex - 1;
     if (pre <= _currentAlbum.tracks.length) {
-      player.previous();
       play(pre);
     }
   }

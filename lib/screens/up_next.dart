@@ -22,9 +22,9 @@ class UpNextWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () {},
         child: DraggableScrollableSheet(
-          initialChildSize: 0.15,
+          initialChildSize: 0.1,
           maxChildSize: 0.5,
-          minChildSize: 0.1,
+          minChildSize: 0.05,
           builder: (ctx, controller) => AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             child: Container(

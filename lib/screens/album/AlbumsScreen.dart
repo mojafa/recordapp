@@ -42,7 +42,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Intro_1.mp3?alt=media&token=2204a9ad-ebf8-4b38-acc3-aeb21842cfa4',
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_1.png?alt=media&token=8447a884-b2b5-40f2-9e12-c18ce938750a',
               null,
-              '2022-03-06T08:09:24.775929')
+              '239')
         ]),
     Album(
         2,
@@ -57,7 +57,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Intro_2.mp3?alt=media&token=0c8324de-7e60-4844-b38c-97746769ecb5',
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_2.png?alt=media&token=d1f82f09-8e16-4547-ac4c-a2fa2dba9a36',
               null,
-              '2022-03-06T08:09:24.775929')
+              '108')
         ]),
     Album(
         3,
@@ -72,7 +72,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/Conclusion.mp3?alt=media&token=f9dbe465-94f0-4fd6-a3a1-49f460b2ba56',
               'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/conclusion.png?alt=media&token=4fb07ef1-0399-4fda-b454-469f56690acb',
               null,
-              '2022-03-06T08:09:24.775929')
+              '78')
         ]),
   ];
 
@@ -207,9 +207,10 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               );
                             },
                             child: SizedBox(
-                              width: 150,
+                              width: size.width * 0.7,
                               child: AlbumTile(
                                 album: staticAlbums[0],
+                                isAsset: true,
                                 // isAsset: true,
                               ),
                             ),
@@ -228,6 +229,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               width: 150,
                               child: AlbumTile(
                                 album: staticAlbums[1],
+                                isAsset: true,
                                 // isAsset: true,
                               ),
                             ),
@@ -450,7 +452,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               width: 150,
                               child: AlbumTile(
                                 album: staticAlbums[2],
-                                // isAsset: true,
+                                isAsset: true,
                               ),
                             ),
                           ),

@@ -23,24 +23,16 @@ class AlbumTile extends StatelessWidget with BaseMixins {
         children: [
           Stack(
             children: [
-              isAsset
-                  ? SizedBox(
-                      height: height * 0.2,
-                      width: responsive(context,
-                          isTablet: 170.0, isPhone: 150.0, isSmallPhone: 135.0),
-                      child: Image.asset(
-                        album.cover,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : BaseImage(
-                      heroId: album.id,
-                      imageUrl: album.cover,
-                      height: height * 0.2,
-                      width: responsive(context,
-                          isTablet: 170.0, isPhone: 150.0, isSmallPhone: 135.0),
-                      radius: 5.0,
-                    ),
+              BaseImage(
+                heroId: album.id,
+                imageUrl: album.cover,
+                height: height * 0.2,
+                width: isAsset
+                    ? width * 0.7
+                    : responsive(context,
+                        isTablet: 170.0, isPhone: 150.0, isSmallPhone: 135.0),
+                radius: 5.0,
+              ),
               Positioned(
                   right: 10,
                   bottom: 10,
@@ -51,10 +43,11 @@ class AlbumTile extends StatelessWidget with BaseMixins {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 5, bottom: 5),
+            padding: EdgeInsets.only(top: isAsset ? 15 : 5, bottom: 5),
             child: Text(
               album.title,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  fontSize: isAsset ? 14 : 12, fontWeight: FontWeight.w500),
             ),
           ),
           if (!isAsset)
