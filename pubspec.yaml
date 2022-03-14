@@ -20,10 +20,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  assets_audio_player:
-    git:
-      url: https://github.com/florent37/Flutter-AssetsAudioPlayer.git
-      ref: master
+  # assets_audio_player:
+  #   git:
+  #     url: https://github.com/florent37/Flutter-AssetsAudioPlayer.git
+  #     ref: master
+  assets_audio_player: ^3.0.4+1
   cached_network_image: ^3.1.0
   carousel_slider: ^4.0.0
   cloud_firestore: ^3.1.10
@@ -47,11 +48,14 @@ dependencies:
   get: ^4.6.1
   global_configuration: ^2.0.0-nullsafety.1
   google_fonts: ^2.3.1
+  google_nav_bar: ^5.0.5
   http: ^0.13.3
   image_picker: ^0.8.3
   intl: ^0.17.0
+  just_audio: ^0.9.20
   jwt_decoder: ^2.0.1
   localstorage: ^4.0.0+1
+  lottie: ^1.2.2
   permission_handler: ^8.1.4+2
   provider: null
   share_plus: ^3.1.0

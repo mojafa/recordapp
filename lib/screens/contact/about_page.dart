@@ -14,6 +14,12 @@ class AboutScreen extends StatelessWidget {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Theme.of(context).iconTheme.color),
           elevation: 0,
+          title: Image.asset(
+            'assets/images/logo.png',
+            height: 45,
+          ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: Stack(
@@ -30,7 +36,7 @@ class AboutScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      width: 30,
+                      width: 15,
                     ),
                     Container(
                       padding: EdgeInsets.all(3),
@@ -42,13 +48,13 @@ class AboutScreen extends StatelessWidget {
                         ]),
                       ),
                       child: CircleAvatar(
-                        radius: 50,
+                        radius: 70,
                         backgroundImage:
                             AssetImage('assets/images/title1.jpeg'),
                       ),
                     ),
                     SizedBox(
-                      width: 25,
+                      width: 15,
                     ),
                     Expanded(
                         child: Column(
@@ -75,12 +81,85 @@ class AboutScreen extends StatelessWidget {
                   height: 30,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    '''Officia nisi nostrud reprehenderit velit tempor velit occaecat. Reprehenderit nisi dolore esse exercitation incididunt. Minim qui ea est quis Lorem sint consectetur esse in.
-Irure ullamco dolore esse ad nisi cillum quis in ut eiusmod ipsum. Esse dolore ullamco id aliquip id eiusmod ipsum. Esse minim sit sint laborum nulla do ut fugiat. Amet incididunt occaecat velit occaecat dolor non adipisicing ex. Eiusmod nostrud fugiat laboris veniam tempor anim cillum ex officia dolor mollit magna officia. Eu velit nulla ad deserunt dolore commodo ipsum tempor qui dolor aliquip est deserunt nisi.Nisi do elit velit deserunt. Voluptate incididunt minim sunt ipsum aliqua minim elit consequat dolore irure fugiat excepteur veniam dolor. Sint qui tempor non laboris sunt in labore adipisicing dolor ad cupidatat exercitation in irure. Ipsum laborum ex officia reprehenderit esse Lorem quis sit esse dolor esse. Nulla adipisicing proident mollit eiusmod ex. Exercitation amet tempor culpa excepteur consequat eiusmod ipsum.''',
-                  ),
-                ),
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: RichText(
+                      text: TextSpan(
+                          text: 'April 15 1968:',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).textTheme.bodyText1.color,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  ''' Ayuu Xasan Cali Khayre ku dhashay degmada Ceelbuur ee gobolka Galguduud.Dugsiga hoose dhexe wuxuu Xasan Cali Kheyre kaga baxay degmada Ceelbuur. Wuxuuna dugsiga sare kaga baxay iskuulka sare ee Cismaan Geeddi Raage ee magaalada Muqdisho.Ciidanka Booliska Qaranka Xasan Cali Khayre waxa uu markii uu ka baxay dugsiga sare gutay waajibkiisa shaqada qaran waxa uuna ka mid noqday Ciidanka Booliska Qaranka wuxuuna kasoo shaqeeyay Saldhigyada Degmooyinka Marka iyo Hodon.''',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '\n\n1989: ',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  '''ayuu Xasan Cali Kheyre magangalyo qoxootinimo ka helay dalka Norway. Wuxuuna mar kale dib u qaatay waxbarashada dugsiga sarre. ''',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '\n\n1998: ',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  '''ayuu ka qalanjabiyay jaamacada Oslo ee University of Oslo, wuxuuna bartay cilmiga siyaasada iyo dhaqaalaha.''',
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '\n\n2001: ',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  '''wuxuu Xasan Cali Kheyre shahaaddada labaad ee MBA-da ka qaatay jaamacada Heriot-Watt University, Edinburgh Campus ee magaalada Edinburgh ee dalka Scotland. Wuxuuna bartay cilmiga dhaqaalaha iyo ganacsiga, isaga oo si gaar ah ugu taqusasay maadooyinka maalgalinta(Investment)''',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                          ]),
+                    )),
                 SizedBox(
                   height: 40,
                 ),

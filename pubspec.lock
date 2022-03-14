@@ -32,11 +32,9 @@ packages:
   assets_audio_player:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "4ead5eb3ac7b7059507c72418df22251fedd92fe"
-      url: "https://github.com/florent37/Flutter-AssetsAudioPlayer.git"
-    source: git
+      name: assets_audio_player
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "3.0.4+1"
   assets_audio_player_web:
     dependency: transitive
@@ -52,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  audio_session:
+    dependency: transitive
+    description:
+      name: audio_session
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6+1"
   boolean_selector:
     dependency: transitive
     description:
@@ -555,6 +560,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.1"
+  google_nav_bar:
+    dependency: "direct main"
+    description:
+      name: google_nav_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.5"
   graphs:
     dependency: transitive
     description:
@@ -653,6 +665,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.5.2"
+  just_audio:
+    dependency: "direct main"
+    description:
+      name: just_audio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.20"
+  just_audio_platform_interface:
+    dependency: transitive
+    description:
+      name: just_audio_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
+  just_audio_web:
+    dependency: transitive
+    description:
+      name: just_audio_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.7"
   jwt_decoder:
     dependency: "direct main"
     description:
@@ -674,6 +707,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  lottie:
+    dependency: "direct main"
+    description:
+      name: lottie
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.2"
   matcher:
     dependency: transitive
     description:

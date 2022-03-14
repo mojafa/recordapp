@@ -8,9 +8,6 @@ import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/Track.dart';
 import 'package:record_app/providers/DownloadProvider.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
-import 'package:record_app/widgtes/Common/BaseImage.dart';
-import 'package:record_app/widgtes/track/TrackFavouriteButton.dart';
-import 'package:record_app/widgtes/track/TrackTileActions.dart';
 import 'package:provider/provider.dart';
 
 import 'TrackPlayButton.dart';
@@ -33,7 +30,7 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
   @override
   Widget build(BuildContext context) {
     PlayerProvider p = Provider.of<PlayerProvider>(context);
-    final d = Provider.of<DownloadProvider>(context);
+    final download = Provider.of<DownloadProvider>(context);
 
     return PlayerBuilder.isPlaying(
       player: p.player,
@@ -99,20 +96,30 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
                   //     width: 30,
                   //     radius: 5.0,
                   //   ),
-                  TrackFavouriteButton(
-                    track: widget.track,
-                    iconSize: 14.0,
-                  ),
-                  TrackTileActions(
-                    child: Icon(
-                      Icons.more_vert,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    track: widget.track,
-                    title: $t(context, 'view_detail'),
-                    isRemove: widget.isDownloadTile == null
-                        ? false
-                        : widget.isDownloadTile,
+                  // TrackFavouriteButton(
+                  //   track: widget.track,
+                  //   iconSize: 14.0,
+                  // ),
+                  // TrackTileActions(
+                  //   child: Icon(
+                  //     Icons.more_vert,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   track: widget.track,
+                  //   title: $t(context, 'view_detail'),
+                  //   isRemove: widget.isDownloadTile == null
+                  //       ? false
+                  //       : widget.isDownloadTile,
+                  // ),
+                  InkWell(
+                    onTap: () {
+                      if (!download.isDownloadSong(widget.track))
+                        download.downloadAudio(widget.track, context);
+                    },
+                    child: Icon(FlutterIcons.download_cloud_fea,
+                        color: download.isDownloadSong(widget.track)
+                            ? Colors.green
+                            : Colors.grey),
                   ),
                 ]),
           ),

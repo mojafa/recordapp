@@ -1,8 +1,13 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:lottie/lottie.dart';
+
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
+import 'package:record_app/providers/DownloadProvider.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
 import 'package:record_app/widgtes/Album/AlbumFavouriteButton.dart';
 import 'package:record_app/widgtes/Common/BaseConnectivity.dart';
@@ -21,6 +26,7 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
   double heightScreen;
   double paddingBottom;
   double width;
+  bool isDownload = false;
 
   _buildContent(Album album, var playerProvider) => Stack(
         fit: StackFit.expand,
@@ -45,35 +51,59 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          album.title,
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w500),
+                        Expanded(
+                          child: SizedBox(
+                            child: Text(
+                              album.title,
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
-                        Spacer(),
+                        InkWell(
+                          onTap: () async {
+                            setState(() {
+                              isDownload = true;
+                            });
+                            for (var song in album.tracks) {
+                              await Provider.of<DownloadProvider>(context,
+                                      listen: false)
+                                  .downloadAudio(song, context);
+                            }
+
+                            setState(() {
+                              isDownload = false;
+                            });
+                          },
+                          child: SizedBox(
+                            height: 50,
+                            child: Lottie.asset('assets/down.json',
+                                repeat: isDownload),
+                          ),
+                        ),
                         AlbumFavouriteButton(
                           iconSize: 25.0,
                           album: album,
                         ),
                       ],
                     ),
-                    // if (album.content != null)
-                    //   Container(
-                    //     width: width,
-                    //     margin: EdgeInsets.only(top: 10, bottom: 20),
-                    //     child: ExpandableText(album.content,
-                    //         style: TextStyle(
-                    //             color: Theme.of(context).colorScheme.primary,
-                    //             height: 1.5,
-                    //             fontSize: 12),
-                    //         expandText: $t(context, 'show_more'),
-                    //         collapseText: $t(
-                    //           context,
-                    //           'show_less',
-                    //         ),
-                    //         maxLines: 4,
-                    //         linkColor: Theme.of(context).primaryColor),
-                    //   ),
+                    if (album.content != null)
+                      Container(
+                        width: width,
+                        margin: EdgeInsets.only(top: 10, bottom: 20),
+                        child: ExpandableText(album.content,
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                height: 1.5,
+                                fontSize: 12),
+                            expandText: $t(context, 'show_more'),
+                            collapseText: $t(
+                              context,
+                              'show_less',
+                            ),
+                            maxLines: 4,
+                            linkColor: Theme.of(context).primaryColor),
+                      ),
                     PlayerBuilder.isPlaying(
                       player: playerProvider.player,
                       builder: (context, isPlaying) {

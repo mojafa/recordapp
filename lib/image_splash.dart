@@ -14,7 +14,7 @@ class _ImageSplashState extends State<ImageSplash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
-      Get.off(() => HomeScreen());
+      Get.off(() => MyBottomNav());
     });
   }
 

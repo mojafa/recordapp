@@ -1,10 +1,16 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/Track.dart';
+import 'package:record_app/providers/PlayerProvider.dart';
+import 'package:record_app/providers/media_provider.dart';
 import 'package:record_app/screens/album/list_album.dart';
 import 'package:record_app/widgtes/Album/AlbumTile.dart';
 import 'package:record_app/widgtes/Common/BaseScaffold.dart';
@@ -73,6 +79,9 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    PlayerProvider playerProvider = Provider.of<PlayerProvider>(context);
+    final media = Provider.of<MediaProvider>(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: BaseScaffold(
@@ -85,24 +94,69 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                 child: ListView(
                   children: [
                     Row(children: [
-                      SizedBox(
-                          height: 40,
-                          child: Image.asset('assets/images/logo.png')),
-                      Spacer(),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.play_arrow_outlined,
-                            size: 30,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          Text('Play All',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Theme.of(context).iconTheme.color,
-                              ))
-                        ],
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundImage:
+                            AssetImage('assets/images/title1.jpeg'),
                       ),
+                      // SizedBox(
+                      //     height: 40,
+                      //     child: Image.asset('assets/images/logo.png')),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Audio Book',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20),
+                      ),
+                      Spacer(),
+                      PlayerBuilder.isPlaying(
+                        player: playerProvider.player,
+                        builder: (context, isPlaying) {
+                          final album = Album(
+                              11,
+                              'All Tracks',
+                              'All Tracks',
+                              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_1.png?alt=media&token=8447a884-b2b5-40f2-9e12-c18ce938750a',
+                              media.tracks);
+                          return new FlatButton.icon(
+                            color: Colors.transparent,
+                            textColor: Colors.white,
+                            icon: Icon(
+                              isPlaying &&
+                                      album.id == playerProvider.currentAlbum.id
+                                  ? SimpleLineIcons.control_pause
+                                  : SimpleLineIcons.control_play,
+                              size: 15,
+                              color: primary,
+                            ),
+                            label: new Text(
+                              $t(context, 'play_tracks'),
+                            ),
+                            onPressed: () {
+                              playerProvider.handlePlayButton(
+                                  album: album,
+                                  track: album.tracks[0],
+                                  index: 0);
+                            },
+                          );
+                        },
+                      ),
+                      // Column(
+                      //   children: [
+                      //     Icon(
+                      //       Icons.play_arrow_outlined,
+                      //       size: 30,
+                      //       color: Theme.of(context).primaryColor,
+                      //     ),
+                      //     Text('Play All',
+                      //         style: TextStyle(
+                      //           fontSize: 14,
+                      //           color: Theme.of(context).iconTheme.color,
+                      //         ))
+                      //   ],
+                      // ),
                       // IconButton(
                       //   onPressed: () {},
                       //   icon: Icon(
@@ -110,7 +164,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       //     size: 24,
                       //   ),
                       // ),
-                      SizedBox(width: 15),
+                      // SizedBox(width: 15),
                     ]),
                     SizedBox(height: 15),
                     TopCarousel(),

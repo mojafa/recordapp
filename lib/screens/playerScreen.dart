@@ -7,6 +7,7 @@ import 'package:record_app/models/Track.dart';
 import 'package:record_app/providers/DownloadProvider.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
 import 'package:record_app/screens/Track/TrackDetailsScreen.dart';
+import 'package:record_app/screens/up_next.dart';
 import 'package:record_app/widgtes/Common/Animations/AnimationRotate.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 import 'package:record_app/widgtes/PositionSeekWidget.dart';
@@ -29,23 +30,29 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
         builder: (context, infos) {
           track = playerProvider.currentTrack;
 
-          return SingleChildScrollView(
-              child: Column(
+          return Stack(
             children: [
-              buildTopContainer(height, playerProvider, width, context, track),
-              SizedBox(height: height * 0.03),
-              buildTrackProgreesSlider(infos, track, playerProvider),
-              SizedBox(height: height * 0.08),
-              buildPlayerActions(height, playerProvider, context, width),
-              SizedBox(height: height * 0.08),
-              buildPlayerBttomActions(context, playerProvider, track),
-              width > 500
-                  ? SizedBox(
-                      height: 5,
-                    )
-                  : SizedBox(height: height * 0.08)
+              SingleChildScrollView(
+                  child: Column(
+                children: [
+                  buildTopContainer(
+                      height, playerProvider, width, context, track),
+                  SizedBox(height: height * 0.02),
+                  buildTrackProgreesSlider(infos, track, playerProvider),
+                  SizedBox(height: height * 0.03),
+                  buildPlayerActions(height, playerProvider, context, width),
+                  SizedBox(height: height * 0.03),
+                  buildPlayerBttomActions(context, playerProvider, track),
+                  width > 500
+                      ? SizedBox(
+                          height: 5,
+                        )
+                      : SizedBox(height: height * 0.05),
+                ],
+              )),
+              UpNextWidget(album: playerProvider.currentAlbum)
             ],
-          ));
+          );
         },
       ),
     );
@@ -232,11 +239,12 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
             ;
           },
           icon: Icon(
-            Icons.download_for_offline_outlined,
+            FlutterIcons.download_cloud_fea,
             size: 30,
             color: downloadProvider.isDownloadSong(track) ? primary : null,
           ),
         ),
+
         // IconButton(
         //   icon: Icon(Icons.shuffle),
         //   color: activeColor(context, playerProvider.shuffled),

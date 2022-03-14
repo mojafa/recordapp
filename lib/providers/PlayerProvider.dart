@@ -41,6 +41,11 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
     notifyListeners();
   }
 
+  set setCurrentTrack(track) {
+    _currentTrack = track;
+    notifyListeners();
+  }
+
   int _sessionId;
   int get sessionId => _sessionId;
 
@@ -71,11 +76,16 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
     int next = _currentIndex + 1;
     if (!action && _loopMode && isLastTrack(next) && _loopPlaylist) {
       setPlaying(_currentAlbum, 0);
+
       play(0);
     } else if (!action && _loopMode && !_loopPlaylist) {
+      player.next();
+
       setPlaying(_currentAlbum, _currentIndex);
       play(_currentIndex);
     } else {
+      player.next();
+
       play(next);
     }
   }
@@ -83,6 +93,7 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
   prev() {
     int pre = _currentIndex - 1;
     if (pre <= _currentAlbum.tracks.length) {
+      player.previous();
       play(pre);
     }
   }
@@ -171,20 +182,27 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
     });
   }
 
-  _open(track) async {
+  _open(Track track) async {
     var metas = Metas(
+      id: track.id.toString(),
+      album: currentAlbum.title,
+
       title: track.title,
-      artist: track.artist.length > 0 ? track.artist[0].name : null,
-      image: track.media != null
-          ? MetasImage.network(track.media.thumbnail)
+      artist: 'Hassan Khaire',
+      image: track.cover != null
+          ? MetasImage.network(track.cover)
           : null, //can be MetasImage.network
     );
 
     await player.open(
       Audio.network(track.url, metas: metas),
       showNotification: true,
+      playInBackground: PlayInBackground.enabled,
+      forceOpen: true,
       notificationSettings: NotificationSettings(
         prevEnabled: isFirstTrack(),
+        playPauseEnabled: true,
+
         // nextEnabled: !isLastTrack(_currentIndex + 1),
         customPrevAction: (player) => prev(),
         customNextAction: (player) => next(),

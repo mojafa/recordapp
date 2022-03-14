@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/models/Track.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
@@ -141,10 +142,22 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                     if (playerProvider.isLastTrack(
                                         playerProvider.currentIndex + 1))
                                       return;
-                                    // playerProvider.next();
+                                    playerProvider.next();
                                     setState(() {});
                                   },
-                                )
+                                ),
+                                InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        playerProvider.handlePlayButton(
+                                          track: track,
+                                          album: playerProvider.currentAlbum,
+                                          index: playerProvider.currentIndex,
+                                        );
+                                        playerProvider.setCurrentTrack = null;
+                                      });
+                                    },
+                                    child: Icon(Icons.close, color: primary)),
                               ],
                             ),
                           ],
