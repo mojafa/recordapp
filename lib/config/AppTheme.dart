@@ -31,14 +31,14 @@ class AppTheme {
       color: Colors.black,
     ),
     primaryTextTheme: GoogleFonts.montserratTextTheme().copyWith(
-      headline1: TextStyle(color: Colors.red, fontSize: 12),
-      headline3: TextStyle(
+      headline1: GoogleFonts.montserrat(color: Colors.red, fontSize: 12),
+      headline3: GoogleFonts.montserrat(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         letterSpacing: 1,
         color: Colors.black87,
       ),
-      headline5: TextStyle(
+      headline5: GoogleFonts.montserrat(
         fontSize: 10,
         fontWeight: FontWeight.w500,
         letterSpacing: 1,
@@ -46,13 +46,15 @@ class AppTheme {
       ),
     ),
     textTheme: GoogleFonts.montserratTextTheme().copyWith(
-      //  bodyText1: TextStyle(color: Colors.white54, height: 1.5, fontSize: 12),
-      headline1: TextStyle(color: Colors.black, fontWeight: FontWeight.w100),
-      subtitle1: TextStyle(
+      //  bodyText1: GoogleFonts.montserrat(color: Colors.white54, height: 1.5, fontSize: 12),
+      headline1: GoogleFonts.montserrat(
+          color: Colors.black, fontWeight: FontWeight.w100),
+      subtitle1: GoogleFonts.montserrat(
         color: Colors.black,
         fontSize: 14.0,
       ),
-      subtitle2: TextStyle(color: Colors.black, height: 1.5, fontSize: 12),
+      subtitle2: GoogleFonts.montserrat(
+          color: Colors.black, height: 1.5, fontSize: 12),
     ),
   );
 
@@ -62,7 +64,7 @@ class AppTheme {
     primaryColor: primary,
     appBarTheme: AppBarTheme(
       color: surface,
-      titleTextStyle: TextStyle(
+      titleTextStyle: GoogleFonts.montserrat(
         color: Colors.white,
       ),
       iconTheme: IconThemeData(
@@ -81,39 +83,34 @@ class AppTheme {
       color: Colors.white54,
     ),
     primaryTextTheme: TextTheme(
-      headline1: TextStyle(
+      headline1: GoogleFonts.montserrat(
         color: Colors.red,
         fontSize: 12,
-        fontFamily: GoogleFonts.montserrat().fontFamily,
       ),
-      headline3: TextStyle(
+      headline3: GoogleFonts.montserrat(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
-      headline5: TextStyle(
+      headline5: GoogleFonts.montserrat(
         fontSize: 10,
         fontWeight: FontWeight.w500,
         letterSpacing: 1,
         color: primary,
-        fontFamily: GoogleFonts.montserrat().fontFamily,
       ),
     ),
     textTheme: TextTheme(
-      headline1: TextStyle(
+      headline1: GoogleFonts.montserrat(
         color: Colors.white,
-        fontFamily: GoogleFonts.montserrat().fontFamily,
       ),
-      subtitle1: TextStyle(
+      subtitle1: GoogleFonts.montserrat(
         color: Colors.white70,
         fontSize: 14.0,
-        fontFamily: GoogleFonts.montserrat().fontFamily,
       ),
-      subtitle2: TextStyle(
+      subtitle2: GoogleFonts.montserrat(
         color: Colors.white54,
         height: 1.5,
         fontSize: 12,
-        fontFamily: GoogleFonts.montserrat().fontFamily,
       ),
     ),
   );

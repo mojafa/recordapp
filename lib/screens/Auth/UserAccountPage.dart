@@ -24,7 +24,10 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
     var themeProvider = Provider.of<ThemeProvider>(context);
     return new Scaffold(
       appBar: new AppBar(
-        title: Text($t(context, 'account')),
+        title: Text(
+          $t(context, 'account'),
+          style: TextStyle(fontSize: 18),
+        ),
         elevation: 0.0,
       ),
       body: provider.isLoaded

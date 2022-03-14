@@ -8,17 +8,15 @@ import 'package:record_app/widgtes/track/TrackTile.dart';
 class UpNextWidget extends StatelessWidget {
   const UpNextWidget({
     Key key,
-    @required this.album,
   }) : super(key: key);
-  final Album album;
 
   @override
   Widget build(BuildContext context) {
     PlayerProvider playerProvider = Provider.of<PlayerProvider>(context);
-    album.tracks.remove(playerProvider.currentTrack);
+    final album = playerProvider.currentAlbum;
     return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => Navigator.of(context).pop(),
+      // behavior: HitTestBehavior.opaque,
+      // onTap: () => Navigator.of(context).pop(),
       child: GestureDetector(
         onTap: () {},
         child: DraggableScrollableSheet(
@@ -55,21 +53,20 @@ class UpNextWidget extends StatelessWidget {
                           ),
                           Text('Up Next',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold)),
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
                     ListView(
                       padding: EdgeInsets.zero,
+                      controller: controller,
                       shrinkWrap: true,
                       children: album.tracks
                           .map((e) => Container(
                                 color: Theme.of(context)
                                     .scaffoldBackgroundColor
                                     .withOpacity(
-                                        0.4 * (album.tracks.indexOf(e) + 1)),
+                                        0.05 * (album.tracks.indexOf(e) + 1)),
                                 child: TrackTile(
                                   album: album,
                                   index: album.tracks.indexOf(e),

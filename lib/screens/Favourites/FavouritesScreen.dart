@@ -17,7 +17,10 @@ class FavouritesScreen extends StatelessWidget with BaseMixins {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
-        title: Text($t(context, 'fvrt')),
+        title: Text(
+          $t(context, 'fvrt'),
+          style: TextStyle(fontSize: 18),
+        ),
         elevation: 0.0,
       ),
       body: DefaultTabController(

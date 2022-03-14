@@ -127,8 +127,11 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
                   // ),
                   InkWell(
                     onTap: () {
-                      if (!download.isDownloadSong(widget.track))
+                      if (!download.isDownloadSong(widget.track)) {
                         download.downloadAudio(widget.track, context);
+                      } else {
+                        download.removeSong(widget.track);
+                      }
                     },
                     child: Icon(FlutterIcons.download_cloud_fea,
                         color: download.isDownloadSong(widget.track)

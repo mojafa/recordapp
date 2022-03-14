@@ -149,11 +149,12 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                 InkWell(
                                     onTap: () {
                                       setState(() {
-                                        playerProvider.handlePlayButton(
-                                          track: track,
-                                          album: playerProvider.currentAlbum,
-                                          index: playerProvider.currentIndex,
-                                        );
+                                        if (playerProvider.isPlaying())
+                                          playerProvider.handlePlayButton(
+                                            track: track,
+                                            album: playerProvider.currentAlbum,
+                                            index: playerProvider.currentIndex,
+                                          );
                                         playerProvider.setCurrentTrack = null;
                                       });
                                     },

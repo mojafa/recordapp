@@ -86,7 +86,7 @@ class AboutScreen extends StatelessWidget {
                       text: TextSpan(
                           text: 'April 15 1968:',
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
@@ -95,7 +95,7 @@ class AboutScreen extends StatelessWidget {
                               text:
                                   ''' Ayuu Xasan Cali Khayre ku dhashay degmada Ceelbuur ee gobolka Galguduud.Dugsiga hoose dhexe wuxuu Xasan Cali Kheyre kaga baxay degmada Ceelbuur. Wuxuuna dugsiga sare kaga baxay iskuulka sare ee Cismaan Geeddi Raage ee magaalada Muqdisho.Ciidanka Booliska Qaranka Xasan Cali Khayre waxa uu markii uu ka baxay dugsiga sare gutay waajibkiisa shaqada qaran waxa uuna ka mid noqday Ciidanka Booliska Qaranka wuxuuna kasoo shaqeeyay Saldhigyada Degmooyinka Marka iyo Hodon.''',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.normal,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
@@ -104,7 +104,7 @@ class AboutScreen extends StatelessWidget {
                             TextSpan(
                               text: '\n\n1989: ',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
@@ -114,7 +114,7 @@ class AboutScreen extends StatelessWidget {
                               text:
                                   '''ayuu Xasan Cali Kheyre magangalyo qoxootinimo ka helay dalka Norway. Wuxuuna mar kale dib u qaatay waxbarashada dugsiga sarre. ''',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.normal,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
@@ -123,7 +123,7 @@ class AboutScreen extends StatelessWidget {
                             TextSpan(
                               text: '\n\n1998: ',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
@@ -134,7 +134,7 @@ class AboutScreen extends StatelessWidget {
                                   '''ayuu ka qalanjabiyay jaamacada Oslo ee University of Oslo, wuxuuna bartay cilmiga siyaasada iyo dhaqaalaha.''',
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
-                                fontSize: 15,
+                                fontSize: 13,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
                               ),
@@ -142,7 +142,7 @@ class AboutScreen extends StatelessWidget {
                             TextSpan(
                               text: '\n\n2001: ',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
@@ -152,7 +152,7 @@ class AboutScreen extends StatelessWidget {
                               text:
                                   '''wuxuu Xasan Cali Kheyre shahaaddada labaad ee MBA-da ka qaatay jaamacada Heriot-Watt University, Edinburgh Campus ee magaalada Edinburgh ee dalka Scotland. Wuxuuna bartay cilmiga dhaqaalaha iyo ganacsiga, isaga oo si gaar ah ugu taqusasay maadooyinka maalgalinta(Investment)''',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.normal,
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,

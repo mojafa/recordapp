@@ -23,6 +23,27 @@ class DownloadScreen extends StatelessWidget with BaseMixins {
         children: [
           SizedBox(height: MediaQuery.of(context).padding.top),
           BaseScreenHeading(title: $t(context, 'download')),
+          Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              children: [
+                Spacer(),
+                InkWell(
+                    onTap: () {
+                      final download =
+                          Provider.of<DownloadProvider>(context, listen: false);
+
+                      for (int i = 0; i < download.downloadSongs.length; i++) {
+                        download.removeSong(download.downloadSongs[i]);
+                      }
+                    },
+                    child:
+                        Text('Clear All', style: TextStyle(color: Colors.red))),
+                SizedBox(width: 15),
+              ],
+            ),
+          ),
           Expanded(
               child: Container(
             color: Theme.of(context).scaffoldBackgroundColor,

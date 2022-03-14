@@ -74,11 +74,11 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
   /// A track can be next by action or on playlistAudioFinished
   next({action: true}) {
     int next = _currentIndex + 1;
-    if (!action && _loopMode && isLastTrack(next) && _loopPlaylist) {
+    if (!action && isLastTrack(next)) {
       setPlaying(_currentAlbum, 0);
 
       play(0);
-    } else if (!action && _loopMode && !_loopPlaylist) {
+    } else if (!action) {
       setPlaying(_currentAlbum, _currentIndex);
       play(_currentIndex);
     } else {

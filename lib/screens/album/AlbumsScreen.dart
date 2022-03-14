@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/config/AppRoutes.dart';
@@ -12,6 +13,7 @@ import 'package:record_app/models/Track.dart';
 import 'package:record_app/providers/PlayerProvider.dart';
 import 'package:record_app/providers/media_provider.dart';
 import 'package:record_app/screens/album/list_album.dart';
+import 'package:record_app/screens/contact/about_page.dart';
 import 'package:record_app/widgtes/Album/AlbumTile.dart';
 import 'package:record_app/widgtes/Common/BaseScaffold.dart';
 import 'package:record_app/widgtes/track/my_carousel.dart';
@@ -32,7 +34,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
     Album(
         1,
         'Fariinta Musharraxa',
-        audio1,
+        '',
         'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_1.png?alt=media&token=8447a884-b2b5-40f2-9e12-c18ce938750a',
         [
           Track(
@@ -80,7 +82,6 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     PlayerProvider playerProvider = Provider.of<PlayerProvider>(context);
-    final media = Provider.of<MediaProvider>(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -90,59 +91,35 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 child: ListView(
                   children: [
                     Row(children: [
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundImage:
-                            AssetImage('assets/images/title1.jpeg'),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => AboutScreen());
+                        },
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              AssetImage('assets/images/title1.jpeg'),
+                        ),
                       ),
                       // SizedBox(
                       //     height: 40,
                       //     child: Image.asset('assets/images/logo.png')),
+                      Spacer(),
                       SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Audio Book',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 20),
+                        height: 45,
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                       Spacer(),
-                      PlayerBuilder.isPlaying(
-                        player: playerProvider.player,
-                        builder: (context, isPlaying) {
-                          final album = Album(
-                              11,
-                              'All Tracks',
-                              'All Tracks',
-                              'https://firebasestorage.googleapis.com/v0/b/audio-project-b56de.appspot.com/o/intro_1.png?alt=media&token=8447a884-b2b5-40f2-9e12-c18ce938750a',
-                              media.tracks);
-                          return new FlatButton.icon(
-                            color: Colors.transparent,
-                            textColor: Colors.white,
-                            icon: Icon(
-                              isPlaying &&
-                                      album.id == playerProvider.currentAlbum.id
-                                  ? SimpleLineIcons.control_pause
-                                  : SimpleLineIcons.control_play,
-                              size: 15,
-                              color: primary,
-                            ),
-                            label: new Text(
-                              $t(context, 'play_tracks'),
-                            ),
-                            onPressed: () {
-                              playerProvider.handlePlayButton(
-                                  album: album,
-                                  track: album.tracks[0],
-                                  index: 0);
-                            },
-                          );
-                        },
-                      ),
+                      SizedBox(
+                        width: 40,
+                      )
                       // Column(
                       //   children: [
                       //     Icon(
@@ -207,7 +184,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               );
                             },
                             child: SizedBox(
-                              width: size.width * 0.7,
+                              width: 150,
                               child: AlbumTile(
                                 album: staticAlbums[0],
                                 isAsset: true,
@@ -336,7 +313,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                     SizedBox(height: 10),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 5),
-                      child: Text('CHAPTERS',
+                      child: Text('Hiigsiyada',
                           style: TextStyle(
                             fontSize: 18,
                             color: Theme.of(context).iconTheme.color,
@@ -418,7 +395,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                     SizedBox(height: 10),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 5),
-                      child: Text('CONCLUSION',
+                      child: Text('Gunaanad',
                           style: TextStyle(
                             fontSize: 18,
                             color: Theme.of(context).iconTheme.color,
@@ -449,7 +426,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               );
                             },
                             child: SizedBox(
-                              width: 150,
+                              width: size.width * 0.9,
                               child: AlbumTile(
                                 album: staticAlbums[2],
                                 isAsset: true,

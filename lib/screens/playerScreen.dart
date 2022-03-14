@@ -50,7 +50,7 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
                       : SizedBox(height: height * 0.05),
                 ],
               )),
-              UpNextWidget(album: playerProvider.currentAlbum)
+              UpNextWidget()
             ],
           );
         },
