@@ -67,7 +67,7 @@ class _TopCarouselState extends State<TopCarousel> {
                 isAsset: true,
                 height: size.height * 0.33,
                 width: size.width,
-                radius: 0,
+                radius: 10,
                 overlay: !widget.isAbout,
                 overlayOpacity: 0.0001,
                 overlayStops: [0.3, 0.8],

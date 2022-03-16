@@ -91,8 +91,8 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                child: ListView(
+                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                child: Column(
                   children: [
                     Row(children: [
                       GestureDetector(
@@ -110,7 +110,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       //     child: Image.asset('assets/images/logo.png')),
                       Spacer(),
                       SizedBox(
-                        height: 45,
+                        height: 55,
                         child: Image.asset(
                           'assets/images/logo.png',
                           fit: BoxFit.fitHeight,
@@ -143,298 +143,306 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       // ),
                       // SizedBox(width: 15),
                     ]),
-                    SizedBox(height: 15),
-                    TopCarousel(),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Text(
-                          'HASSAN ALI KHAIRE',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        Container(
-                          height: 20,
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          width: 3,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                        Text(
-                          'SOOMALIYA',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green),
-                        ),
-                      ],
-                    ),
                     SizedBox(height: 10),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
+                    Expanded(
+                      child: ListView(
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                AppRoutes.albumDetail,
-                                arguments: staticAlbums[0],
-                              );
-                            },
-                            child: SizedBox(
-                              width: 150,
-                              child: AlbumTile(
-                                album: staticAlbums[0],
-                                isAsset: true,
-                                // isAsset: true,
+                          TopCarousel(),
+                          SizedBox(height: 15),
+                          Row(
+                            children: [
+                              Text(
+                                'HASSAN ALI KHAIRE',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor,
+                                ),
                               ),
+                              Container(
+                                height: 20,
+                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                width: 3,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              Text(
+                                'SOOMALIYA',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                      AppRoutes.albumDetail,
+                                      arguments: staticAlbums[0],
+                                    );
+                                  },
+                                  child: SizedBox(
+                                    width: 150,
+                                    child: AlbumTile(
+                                      album: staticAlbums[0],
+                                      isAsset: true,
+                                      // isAsset: true,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                      AppRoutes.albumDetail,
+                                      arguments: staticAlbums[1],
+                                    );
+                                  },
+                                  child: SizedBox(
+                                    width: 150,
+                                    child: AlbumTile(
+                                      album: staticAlbums[1],
+                                      isAsset: true,
+                                      // isAsset: true,
+                                    ),
+                                  ),
+                                ),
+                                // Column(
+                                //   children: [
+                                //     Container(
+                                //       height: size.height * .2,
+                                //       margin: EdgeInsets.symmetric(horizontal: 10),
+                                //       width: 150,
+                                //       child: Image.asset(
+                                //         'assets/images/title1.jpeg',
+                                //         fit: BoxFit.cover,
+                                //       ),
+                                //     ),
+                                //     SizedBox(
+                                //       height: 10,
+                                //     ),
+                                //     Text(
+                                //       'Farriinta Musharraxa',
+                                //       style: TextStyle(fontWeight: FontWeight.w500),
+                                //     ),
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   width: 10,
+                                // ),
+                                // Column(
+                                //   children: [
+                                //     Container(
+                                //       height: size.height * .2,
+                                //       margin: EdgeInsets.symmetric(horizontal: 10),
+                                //       width: 150,
+                                //       child: Image.asset(
+                                //         'assets/images/title2.jpeg',
+                                //         fit: BoxFit.cover,
+                                //       ),
+                                //     ),
+                                //     SizedBox(
+                                //       height: 10,
+                                //     ),
+                                //     Text(
+                                //       'Hordhac',
+                                //       style: TextStyle(fontWeight: FontWeight.w500),
+                                //     ),
+                                //   ],
+                                // ),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                            width: 15,
+                          // StreamBuilder(
+                          //   stream: FirebaseFirestore.instance
+                          //       .collection('albums')
+                          //       .limit(2)
+                          //       .snapshots(),
+                          //   builder: (ctx, snapshot) {
+                          //     if (!snapshot.hasData) {
+                          //       return Flushbar(
+                          //         backgroundColor: Theme.of(context)
+                          //             .colorScheme
+                          //             .surface
+                          //             .withOpacity(0.8),
+                          //         icon: Icon(
+                          //           Icons.error_outline,
+                          //           color: Theme.of(context).primaryColor,
+                          //         ),
+                          //         duration: Duration(seconds: 3),
+                          //         flushbarPosition: FlushbarPosition.TOP,
+                          //         titleText: Text($t(context, 'ops')),
+                          //         messageText: Text('Error while registering'),
+                          //       );
+                          //     }
+
+                          //     if (snapshot.hasError) {
+                          //       return Flushbar(
+                          //         backgroundColor: Theme.of(context)
+                          //             .colorScheme
+                          //             .surface
+                          //             .withOpacity(0.8),
+                          //         icon: Icon(
+                          //           Icons.error_outline,
+                          //           color: Theme.of(context).primaryColor,
+                          //         ),
+                          //         duration: Duration(seconds: 3),
+                          //         flushbarPosition: FlushbarPosition.TOP,
+                          //         titleText: Text($t(context, 'ops')),
+                          //         messageText: Text('Error while registering'),
+                          //       );
+                          //     }
+                          //     List<DocumentSnapshot> docs = snapshot.data.docs;
+                          //     return Container(
+                          //       width: size.width,
+                          //       child: SingleChildScrollView(
+                          //         scrollDirection: Axis.horizontal,
+                          //         child: Row(
+                          //             children: List.generate(
+                          //                 docs.length,
+                          //                 (index) => AlbumTile(
+                          //                     album: Album.fromJson(docs[index].data())))),
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
+                          SizedBox(height: 10),
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 5),
+                            child: Text('Hiigsiyada',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Theme.of(context).iconTheme.color,
+                                  fontWeight: FontWeight.bold,
+                                )),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                AppRoutes.albumDetail,
-                                arguments: staticAlbums[1],
+                          Row(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('albums')
+                                .snapshots(),
+                            builder: (ctx, snapshot) {
+                              if (!snapshot.hasData) {
+                                return Flushbar(
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .surface
+                                      .withOpacity(0.8),
+                                  icon: Icon(
+                                    Icons.error_outline,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  duration: Duration(seconds: 3),
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                  titleText: Text($t(context, 'ops')),
+                                  messageText: Text('Error while registering'),
+                                );
+                              }
+
+                              if (snapshot.hasError) {
+                                return Flushbar(
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .surface
+                                      .withOpacity(0.8),
+                                  icon: Icon(
+                                    Icons.error_outline,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  duration: Duration(seconds: 3),
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                  titleText: Text($t(context, 'ops')),
+                                  messageText: Text('Error while registering'),
+                                );
+                              }
+                              List<DocumentSnapshot> docs = snapshot.data.docs;
+                              return GridView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                controller: scrollController,
+                                itemCount: docs.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: responsive(context,
+                                            isSmallPhone: 2,
+                                            isPhone: 2,
+                                            isTablet: 4),
+                                        childAspectRatio: responsive(context,
+                                            isPhone: 0.8,
+                                            isSmallPhone: 0.8,
+                                            isTablet: 0.6)),
+                                itemBuilder: (context, index) {
+                                  return _buildGridItem(context,
+                                      Album.fromJson(docs[index].data()));
+                                },
                               );
                             },
-                            child: SizedBox(
-                              width: 150,
-                              child: AlbumTile(
-                                album: staticAlbums[1],
-                                isAsset: true,
-                                // isAsset: true,
-                              ),
-                            ),
                           ),
-                          // Column(
-                          //   children: [
-                          //     Container(
-                          //       height: size.height * .2,
-                          //       margin: EdgeInsets.symmetric(horizontal: 10),
-                          //       width: 150,
-                          //       child: Image.asset(
-                          //         'assets/images/title1.jpeg',
-                          //         fit: BoxFit.cover,
-                          //       ),
-                          //     ),
-                          //     SizedBox(
-                          //       height: 10,
-                          //     ),
-                          //     Text(
-                          //       'Farriinta Musharraxa',
-                          //       style: TextStyle(fontWeight: FontWeight.w500),
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(
-                          //   width: 10,
-                          // ),
-                          // Column(
-                          //   children: [
-                          //     Container(
-                          //       height: size.height * .2,
-                          //       margin: EdgeInsets.symmetric(horizontal: 10),
-                          //       width: 150,
-                          //       child: Image.asset(
-                          //         'assets/images/title2.jpeg',
-                          //         fit: BoxFit.cover,
-                          //       ),
-                          //     ),
-                          //     SizedBox(
-                          //       height: 10,
-                          //     ),
-                          //     Text(
-                          //       'Hordhac',
-                          //       style: TextStyle(fontWeight: FontWeight.w500),
-                          //     ),
-                          //   ],
-                          // ),
+                          SizedBox(height: 10),
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 5),
+                            child: Text('Gunaanad',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Theme.of(context).iconTheme.color,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                      AppRoutes.albumDetail,
+                                      arguments: staticAlbums[2],
+                                    );
+                                  },
+                                  child: SizedBox(
+                                    width: size.width * 0.9,
+                                    child: AlbumTile(
+                                      album: staticAlbums[2],
+                                      isAsset: true,
+                                    ),
+                                  ),
+                                ),
+                              ])),
+                          SizedBox(height: 50),
                         ],
                       ),
                     ),
-                    // StreamBuilder(
-                    //   stream: FirebaseFirestore.instance
-                    //       .collection('albums')
-                    //       .limit(2)
-                    //       .snapshots(),
-                    //   builder: (ctx, snapshot) {
-                    //     if (!snapshot.hasData) {
-                    //       return Flushbar(
-                    //         backgroundColor: Theme.of(context)
-                    //             .colorScheme
-                    //             .surface
-                    //             .withOpacity(0.8),
-                    //         icon: Icon(
-                    //           Icons.error_outline,
-                    //           color: Theme.of(context).primaryColor,
-                    //         ),
-                    //         duration: Duration(seconds: 3),
-                    //         flushbarPosition: FlushbarPosition.TOP,
-                    //         titleText: Text($t(context, 'ops')),
-                    //         messageText: Text('Error while registering'),
-                    //       );
-                    //     }
-
-                    //     if (snapshot.hasError) {
-                    //       return Flushbar(
-                    //         backgroundColor: Theme.of(context)
-                    //             .colorScheme
-                    //             .surface
-                    //             .withOpacity(0.8),
-                    //         icon: Icon(
-                    //           Icons.error_outline,
-                    //           color: Theme.of(context).primaryColor,
-                    //         ),
-                    //         duration: Duration(seconds: 3),
-                    //         flushbarPosition: FlushbarPosition.TOP,
-                    //         titleText: Text($t(context, 'ops')),
-                    //         messageText: Text('Error while registering'),
-                    //       );
-                    //     }
-                    //     List<DocumentSnapshot> docs = snapshot.data.docs;
-                    //     return Container(
-                    //       width: size.width,
-                    //       child: SingleChildScrollView(
-                    //         scrollDirection: Axis.horizontal,
-                    //         child: Row(
-                    //             children: List.generate(
-                    //                 docs.length,
-                    //                 (index) => AlbumTile(
-                    //                     album: Album.fromJson(docs[index].data())))),
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
-                    SizedBox(height: 10),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      child: Text('Hiigsiyada',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Theme.of(context).iconTheme.color,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('albums')
-                          .snapshots(),
-                      builder: (ctx, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Flushbar(
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .surface
-                                .withOpacity(0.8),
-                            icon: Icon(
-                              Icons.error_outline,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            duration: Duration(seconds: 3),
-                            flushbarPosition: FlushbarPosition.TOP,
-                            titleText: Text($t(context, 'ops')),
-                            messageText: Text('Error while registering'),
-                          );
-                        }
-
-                        if (snapshot.hasError) {
-                          return Flushbar(
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .surface
-                                .withOpacity(0.8),
-                            icon: Icon(
-                              Icons.error_outline,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            duration: Duration(seconds: 3),
-                            flushbarPosition: FlushbarPosition.TOP,
-                            titleText: Text($t(context, 'ops')),
-                            messageText: Text('Error while registering'),
-                          );
-                        }
-                        List<DocumentSnapshot> docs = snapshot.data.docs;
-                        return GridView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          controller: scrollController,
-                          itemCount: docs.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: responsive(context,
-                                      isSmallPhone: 2, isPhone: 2, isTablet: 4),
-                                  childAspectRatio: responsive(context,
-                                      isPhone: 0.8,
-                                      isSmallPhone: 0.8,
-                                      isTablet: 0.6)),
-                          itemBuilder: (context, index) {
-                            return _buildGridItem(
-                                context, Album.fromJson(docs[index].data()));
-                          },
-                        );
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      child: Text('Gunaanad',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Theme.of(context).iconTheme.color,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                AppRoutes.albumDetail,
-                                arguments: staticAlbums[2],
-                              );
-                            },
-                            child: SizedBox(
-                              width: size.width * 0.9,
-                              child: AlbumTile(
-                                album: staticAlbums[2],
-                                isAsset: true,
-                              ),
-                            ),
-                          ),
-                        ])),
-                    SizedBox(height: 50),
                   ],
                 ),
               ),

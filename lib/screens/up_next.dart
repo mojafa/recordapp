@@ -61,12 +61,15 @@ class UpNextWidget extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       controller: controller,
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       children: album.tracks
                           .map((e) => Container(
-                                color: Theme.of(context)
-                                    .scaffoldBackgroundColor
-                                    .withOpacity(
-                                        0.05 * (album.tracks.indexOf(e) + 1)),
+                                color: playerProvider.currentTrack == e
+                                    ? primary.withOpacity(0.5)
+                                    : Theme.of(context)
+                                        .scaffoldBackgroundColor
+                                        .withOpacity(0.05 *
+                                            (album.tracks.indexOf(e) + 1)),
                                 child: TrackTile(
                                   album: album,
                                   index: album.tracks.indexOf(e),

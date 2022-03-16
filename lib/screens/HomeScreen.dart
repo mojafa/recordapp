@@ -100,7 +100,7 @@ class _MyBottomNavState extends State<MyBottomNav> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<MediaProvider>(context).getAllTracks();
+    // Provider.of<MediaProvider>(context).getAllTracks();
 
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),

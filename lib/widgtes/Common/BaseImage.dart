@@ -49,7 +49,7 @@ class BaseImage extends StatelessWidget {
         )
       : CachedNetworkImage(
           imageUrl: imageUrl,
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.cover,
           height: height,
           imageBuilder: (context, imageProvider) => Container(
             decoration: BoxDecoration(
