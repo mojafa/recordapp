@@ -21,8 +21,8 @@ class UpNextWidget extends StatelessWidget {
         onTap: () {},
         child: DraggableScrollableSheet(
           initialChildSize: 0.1,
-          maxChildSize: 0.5,
-          minChildSize: 0.1,
+          maxChildSize: 0.8,
+          minChildSize: 0.08,
           builder: (ctx, controller) => AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             child: Container(

@@ -125,16 +125,18 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
                                 style: TextStyle()),
                           ],
                         ),
-                        TrackTileActions(
-                          track: playerProvider.currentTrack,
-                          title: $t(context, 'view_detail'),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(50.0)),
-                            child: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.white,
+                        Expanded(
+                          child: TrackTileActions(
+                            track: playerProvider.currentTrack,
+                            title: $t(context, 'view_detail'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(50.0)),
+                              child: Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -217,7 +219,7 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
           onPressed: () {
             if (playerProvider.isLastTrack(playerProvider.currentIndex + 1))
               return;
-            playerProvider.next();
+            playerProvider.next(action: false);
           },
         )
       ],
