@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
+import 'package:record_app/models/empty_screen.dart';
 import 'package:record_app/providers/FavoriteProvider.dart';
 import 'package:record_app/widgtes/Artist/AlbumsList.dart';
 import 'package:record_app/widgtes/Common/CustomCircularProgressIndicator.dart';
@@ -19,7 +20,7 @@ class FavouritesScreen extends StatelessWidget with BaseMixins {
       appBar: AppBar(
         title: Text(
           $t(context, 'fvrt'),
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 20),
         ),
         elevation: 0.0,
       ),
@@ -107,10 +108,15 @@ class TrackContainer extends StatelessWidget with BaseMixins {
                 },
               )
             : CustomCircularProgressIndicator()
-        : BaseMessageScreen(
-            title: $t(context, 'no_tracks'),
-            icon: Icons.data_usage,
-            subtitle: $t(context, 'msg_no_tracks'),
+        : emptyScreen(
+            context,
+            3,
+            'Nothing to',
+            15.0,
+            'Show Here',
+            50,
+            'Go and Add Something',
+            23.0,
           );
   }
 }

@@ -17,7 +17,9 @@ Qorshehayga waxaa astaan u ah Hiigsi iyo Horumar noo horseeda Soomaa- liya xasil
 Waxaa Sharaf ii ah, in aan halkan idin- kula wadaago barnaamij siyaasadeedka aan ku hawl-geli doono haddii la ii doorto xilka Madaxwaynaha Jamhuuri- yadda Federaalka Soomaaliya.
 Barnaamij kasta oo la sameeyaa kama maarmo hawl-karnimo, karti, hufnaan iyo dadaal dhab ah, sida xikmadda Soomaaliyeed ay oranayso «Xaglo
 laaban xoolo kuma yimaadaan».
+
 Allah towfiiqda ha ina waafajiyo.
+
 Mahadnaq & Qaddarin, Mudane Hassan Ali Khaire Musharrax Madaxweyne 2022-2026
 ''';
 

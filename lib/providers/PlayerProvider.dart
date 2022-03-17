@@ -183,7 +183,7 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
       album: currentAlbum.title,
 
       title: track.title,
-      artist: 'Hassan Khaire',
+      artist: 'Hassan Ali Khaire',
       image: track.cover != null
           ? MetasImage.network(track.cover)
           : null, //can be MetasImage.network

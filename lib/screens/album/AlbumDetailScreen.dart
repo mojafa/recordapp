@@ -56,7 +56,7 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
                             child: Text(
                               album.title,
                               style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
+                                  fontSize: 25, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ),
@@ -76,7 +76,7 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
                             });
                           },
                           child: SizedBox(
-                            height: 50,
+                            height: 70,
                             child: Lottie.asset('assets/down.json',
                                 repeat: isDownload),
                           ),
@@ -90,12 +90,12 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
                     if (album.content != null)
                       Container(
                         width: width,
-                        margin: EdgeInsets.only(top: 10, bottom: 20),
+                        margin: EdgeInsets.only(top: 5, bottom: 20),
                         child: ExpandableText(album.content,
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 height: 1.5,
-                                fontSize: 12),
+                                fontSize: 16),
                             expandText: $t(context, 'show_more'),
                             collapseText: $t(
                               context,

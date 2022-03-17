@@ -23,15 +23,15 @@ class TrackDetailsScreen extends StatelessWidget {
               leading: track.cover != null
                   ? BaseImage(
                       imageUrl: track.cover,
-                      height: 50,
-                      width: 50,
+                      height: 70,
+                      width: 70,
                       radius: 5,
                     )
                   : Icon(
                       Icons.library_music,
                       size: 36,
                     ),
-              subtitle: Text('AdmHassan Khairein'),
+              subtitle: Text('Hassan Khaire'),
             ),
             Container(
               padding: EdgeInsets.all(20),
