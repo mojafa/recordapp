@@ -1,17 +1,14 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/route_manager.dart';
-import 'package:provider/provider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/Track.dart';
-import 'package:record_app/providers/PlayerProvider.dart';
-import 'package:record_app/providers/media_provider.dart';
+import 'package:record_app/screens/DownloadScreen.dart';
 import 'package:record_app/screens/album/list_album.dart';
 import 'package:record_app/screens/contact/about_page.dart';
 import 'package:record_app/widgtes/Album/AlbumTile.dart';
@@ -19,7 +16,7 @@ import 'package:record_app/widgtes/Common/BaseScaffold.dart';
 import 'package:record_app/widgtes/track/my_carousel.dart';
 
 class AlbumsScreen extends StatelessWidget with BaseMixins {
-  final ScrollController scrollController = new ScrollController();
+  final ScrollController scrollController = ScrollController();
 
   _buildGridItem(BuildContext context, Album album) => InkWell(
         onTap: () {
@@ -81,7 +78,6 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    PlayerProvider playerProvider = Provider.of<PlayerProvider>(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -105,31 +101,32 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               AssetImage('assets/images/profile.jpeg'),
                         ),
                       ),
-                      // SizedBox(
-                      //     height: 40,
-                      //     child: Image.asset('assets/images/logo.png')),
                       Spacer(),
-                      SizedBox(
-                        height: 45,
-                        child: Image.asset(
-                          'assets/images/logo.png',
-                          fit: BoxFit.fitHeight,
+                      GestureDetector(
+                        onTap: () {
+                          scrollController.animateTo(0,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease);
+                        },
+                        child: SizedBox(
+                          height: 45,
+                          child: Image.asset(
+                            'assets/images/logo.png',
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                       Spacer(),
-                      SizedBox(
-                        width: 40,
-                        child: Column(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.download,
-                                size: 30,
-                                color: primary,
-                              ),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => DownloadScreen());
+                        },
+                        child: SizedBox(
+                          width: 40,
+                          child: Lottie.asset(
+                            'assets/down.json',
+                            repeat: false,
+                          ),
                         ),
                       ),
                       SizedBox(width: 15),
@@ -137,6 +134,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                     SizedBox(height: 10),
                     Expanded(
                       child: ListView(
+                        controller: scrollController,
                         children: [
                           TopCarousel(),
                           SizedBox(height: 15),
@@ -204,109 +202,12 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                                     child: AlbumTile(
                                       album: staticAlbums[1],
                                       isAsset: true,
-                                      // isAsset: true,
                                     ),
                                   ),
                                 ),
-                                // Column(
-                                //   children: [
-                                //     Container(
-                                //       height: size.height * .2,
-                                //       margin: EdgeInsets.symmetric(horizontal: 10),
-                                //       width: 150,
-                                //       child: Image.asset(
-                                //         'assets/images/title1.jpeg',
-                                //         fit: BoxFit.cover,
-                                //       ),
-                                //     ),
-                                //     SizedBox(
-                                //       height: 10,
-                                //     ),
-                                //     Text(
-                                //       'Farriinta Musharraxa',
-                                //       style: TextStyle(fontWeight: FontWeight.w500),
-                                //     ),
-                                //   ],
-                                // ),
-                                // SizedBox(
-                                //   width: 10,
-                                // ),
-                                // Column(
-                                //   children: [
-                                //     Container(
-                                //       height: size.height * .2,
-                                //       margin: EdgeInsets.symmetric(horizontal: 10),
-                                //       width: 150,
-                                //       child: Image.asset(
-                                //         'assets/images/title2.jpeg',
-                                //         fit: BoxFit.cover,
-                                //       ),
-                                //     ),
-                                //     SizedBox(
-                                //       height: 10,
-                                //     ),
-                                //     Text(
-                                //       'Hordhac',
-                                //       style: TextStyle(fontWeight: FontWeight.w500),
-                                //     ),
-                                //   ],
-                                // ),
                               ],
                             ),
                           ),
-                          // StreamBuilder(
-                          //   stream: FirebaseFirestore.instance
-                          //       .collection('albums')
-                          //       .limit(2)
-                          //       .snapshots(),
-                          //   builder: (ctx, snapshot) {
-                          //     if (!snapshot.hasData) {
-                          //       return Flushbar(
-                          //         backgroundColor: Theme.of(context)
-                          //             .colorScheme
-                          //             .surface
-                          //             .withOpacity(0.8),
-                          //         icon: Icon(
-                          //           Icons.error_outline,
-                          //           color: Theme.of(context).primaryColor,
-                          //         ),
-                          //         duration: Duration(seconds: 3),
-                          //         flushbarPosition: FlushbarPosition.TOP,
-                          //         titleText: Text($t(context, 'ops')),
-                          //         messageText: Text('Error while registering'),
-                          //       );
-                          //     }
-
-                          //     if (snapshot.hasError) {
-                          //       return Flushbar(
-                          //         backgroundColor: Theme.of(context)
-                          //             .colorScheme
-                          //             .surface
-                          //             .withOpacity(0.8),
-                          //         icon: Icon(
-                          //           Icons.error_outline,
-                          //           color: Theme.of(context).primaryColor,
-                          //         ),
-                          //         duration: Duration(seconds: 3),
-                          //         flushbarPosition: FlushbarPosition.TOP,
-                          //         titleText: Text($t(context, 'ops')),
-                          //         messageText: Text('Error while registering'),
-                          //       );
-                          //     }
-                          //     List<DocumentSnapshot> docs = snapshot.data.docs;
-                          //     return Container(
-                          //       width: size.width,
-                          //       child: SingleChildScrollView(
-                          //         scrollDirection: Axis.horizontal,
-                          //         child: Row(
-                          //             children: List.generate(
-                          //                 docs.length,
-                          //                 (index) => AlbumTile(
-                          //                     album: Album.fromJson(docs[index].data())))),
-                          //       ),
-                          //     );
-                          //   },
-                          // ),
                           SizedBox(height: 10),
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 5),
@@ -329,7 +230,6 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                               ),
                             ],
                           ),
-
                           StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('albums')

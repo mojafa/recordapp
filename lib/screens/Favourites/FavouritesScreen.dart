@@ -3,7 +3,7 @@ import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/empty_screen.dart';
 import 'package:record_app/providers/FavoriteProvider.dart';
-import 'package:record_app/widgtes/Artist/AlbumsList.dart';
+import 'package:record_app/screens/album/AlbumsList.dart';
 import 'package:record_app/widgtes/Common/CustomCircularProgressIndicator.dart';
 import 'package:record_app/widgtes/Search/BaseMessageScreen.dart';
 import 'package:record_app/widgtes/track/TrackTile.dart';

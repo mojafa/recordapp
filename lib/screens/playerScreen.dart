@@ -245,12 +245,6 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
             color: downloadProvider.isDownloadSong(track) ? primary : null,
           ),
         ),
-
-        // IconButton(
-        //   icon: Icon(Icons.shuffle),
-        //   color: activeColor(context, playerProvider.shuffled),
-        //   onPressed: () => playerProvider.handleShuffle(),
-        // ),
         TrackFavouriteButton(track: track),
         IconButton(
           onPressed: () {
@@ -267,14 +261,6 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
             size: 30,
           ),
         ),
-
-        // IconButton(
-        //   icon: Icon(!playerProvider.loopPlaylist && playerProvider.loopMode
-        //       ? Icons.repeat_one
-        //       : Icons.repeat),
-        //   color: activeColor(context, playerProvider.loopMode),
-        //   onPressed: () => playerProvider.handleLoop(),
-        // ),
       ],
     );
   }

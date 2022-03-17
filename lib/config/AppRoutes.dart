@@ -8,21 +8,12 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:record_app/screens/Artist/ArtistDetailScreen.dart';
-import 'package:record_app/screens/Artist/ArtistsScreen.dart';
-import 'package:record_app/screens/Auth/ConfirmationScreen.dart';
-import 'package:record_app/screens/Auth/LoginScreen.dart';
-import 'package:record_app/screens/Auth/ProfileEditScreen.dart';
-import 'package:record_app/screens/Auth/RegisterScreen.dart';
+
 import 'package:record_app/screens/DownloadScreen.dart';
 import 'package:record_app/screens/HomeScreen.dart';
-import 'package:record_app/screens/admin/admin_add_podcast.dart';
 import 'package:record_app/screens/album/AlbumDetailScreen.dart';
 import 'package:record_app/screens/album/AlbumsScreen.dart';
 import 'package:record_app/screens/PlayerScreen.dart';
-import 'package:record_app/screens/post/PostDetailsScreen.dart';
-import 'package:record_app/screens/post/PostsScreen.dart';
-import 'package:record_app/widgtes/Common/BaseAuthCheck.dart';
 
 class AppRoutes {
   static const home = '/home';
@@ -42,24 +33,10 @@ class AppRoutes {
 
   Map<String, WidgetBuilder> routes() {
     return {
-      home: (context) => HomeScreen(),
+      home: (context) => MyBottomNav(),
       albums: (context) => AlbumsScreen(),
       albumDetail: (context) => AlbumDetailScreen(),
       player: (context) => PlayerScreen(),
-      artists: (context) => ArtistsScreen(),
-      artist: (context) => ArtistDetailScreen(),
-      post: (context) => PostDetailsScreen(),
-      posts: (context) => PostsScreen(),
-      loginRoute: (context) => BaseAuthCheck(
-            redirect: AdminAddPodcast(),
-            child: LoginScreen(),
-          ),
-      registerRoute: (context) => BaseAuthCheck(
-            redirect: AdminAddPodcast(),
-            child: RegisterScreen(),
-          ),
-      profileEditRoute: (context) => ProfileEditPage(),
-      confirmScreenRoute: (context) => ConfirmationScreen(),
       downloadScreenRoute: (context) => DownloadScreen()
     };
   }

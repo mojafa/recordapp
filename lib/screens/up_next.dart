@@ -22,7 +22,7 @@ class UpNextWidget extends StatelessWidget {
         child: DraggableScrollableSheet(
           initialChildSize: 0.1,
           maxChildSize: 0.5,
-          minChildSize: 0.05,
+          minChildSize: 0.1,
           builder: (ctx, controller) => AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             child: Container(
@@ -36,6 +36,7 @@ class UpNextWidget extends StatelessWidget {
                   shrinkWrap: true,
                   controller: controller,
                   padding: EdgeInsets.zero,
+                  // physics: NeverScrollableScrollPhysics(),
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -61,7 +62,6 @@ class UpNextWidget extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       controller: controller,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
                       children: album.tracks
                           .map((e) => Container(
                                 color: playerProvider.currentTrack == e

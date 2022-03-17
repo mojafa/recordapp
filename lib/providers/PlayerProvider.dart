@@ -78,7 +78,7 @@ class PlayerProvider extends ChangeNotifier with BaseMixins {
       setPlaying(_currentAlbum, 0);
 
       play(0);
-    } else if (!action) {
+    } else if (action) {
       setPlaying(_currentAlbum, _currentIndex);
       play(_currentIndex);
     } else {

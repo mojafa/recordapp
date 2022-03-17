@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:record_app/screens/album/SearchScreen.dart';
-import 'package:record_app/screens/post/PostsScreen.dart';
 
 class BaseAppBar extends StatelessWidget {
   final title;
@@ -18,7 +17,7 @@ class BaseAppBar extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => PostsScreen(),
+                builder: (BuildContext context) => null,
                 fullscreenDialog: true,
               ));
         },

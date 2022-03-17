@@ -1,79 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:provider/provider.dart';
 import 'package:record_app/config/AppColors.dart';
-import 'package:record_app/providers/media_provider.dart';
-import 'package:record_app/screens/Auth/UserAccountPage.dart';
 import 'package:record_app/screens/Favourites/FavouritesScreen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:record_app/screens/podcast/PodcastScreen.dart';
+import 'package:record_app/screens/Settings/settings__screen.dart';
 import 'album/AlbumsScreen.dart';
-import 'ExploreScreen.dart';
-
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  TabController tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: 3, vsync: this);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        color: Theme.of(context).colorScheme.surface,
-        child: TabBar(
-            controller: tabController,
-            indicatorColor: Colors.green,
-            indicatorWeight: 2.0,
-            indicatorSize: TabBarIndicatorSize.label,
-            labelColor: Colors.green,
-            labelStyle: TextStyle(fontSize: 12),
-            unselectedLabelColor: Colors.grey,
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Octicons.home),
-              ),
-              Tab(
-                icon: Icon(AntDesign.hearto),
-              ),
-              Tab(
-                icon: Icon(Octicons.settings),
-              ),
-            ]),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              child: TabBarView(
-                controller: tabController,
-                children: <Widget>[
-                  // ExploreScreen(),
-                  AlbumsScreen(),
-                  // PodcastScreen(),
-                  FavouritesScreen(),
-                  UserAccountPage(),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class MyBottomNav extends StatefulWidget {
   @override
@@ -85,11 +16,9 @@ class _MyBottomNavState extends State<MyBottomNav> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   List<Widget> _widgetOptions = <Widget>[
-    // ExploreScreen(),
     AlbumsScreen(),
-    // PodcastScreen(),
     FavouritesScreen(),
-    UserAccountPage(),
+    SettingsScreen(),
   ];
 
   @override

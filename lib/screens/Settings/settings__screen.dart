@@ -1,25 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/providers/AuthProvider.dart';
 import 'package:record_app/providers/ThemeProvider.dart';
 import 'package:record_app/screens/DownloadScreen.dart';
-import 'package:record_app/screens/admin/admin_add_podcast.dart';
 import 'package:record_app/screens/contact/about_page.dart';
-import 'package:record_app/screens/contact/contact_page.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 import 'package:record_app/widgtes/Common/CustomCircularProgressIndicator.dart';
-import 'package:global_configuration/global_configuration.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-class UserAccountPage extends StatelessWidget with BaseMixins {
+class SettingsScreen extends StatelessWidget with BaseMixins {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AuthenticationProvider>(context);
-    GlobalConfiguration cfg = new GlobalConfiguration();
 
     var themeProvider = Provider.of<ThemeProvider>(context);
     return new Scaffold(
@@ -85,34 +82,6 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                                       'The appstore and play store links will be here');
                                 },
                               ),
-                              // Divider(height: 0),
-                              // ListTile(
-                              //   title: FirebaseAuth.instance.currentUser != null
-                              //       ? Text('Admin Panel')
-                              //       : Text($t(context, 'sign_in')),
-                              //   leading: Icon(
-                              //     Icons.verified_user,
-                              //     size: 22,
-                              //   ),
-                              //   onTap: FirebaseAuth.instance.currentUser != null
-                              //       ? () => Get.to(() => AdminAddPodcast())
-                              //       : () => Navigator.pushNamed(
-                              //           context, AppRoutes.loginRoute),
-                              // ),
-                              // Divider(height: 0),
-                              // if (FirebaseAuth.instance.currentUser == null)
-                              //   ListTile(
-                              //     title: Text($t(
-                              //       context,
-                              //       'create_new_Account',
-                              //     )),
-                              //     leading: Icon(
-                              //       Icons.account_circle,
-                              //       size: 22,
-                              //     ),
-                              //     onTap: () => Navigator.pushNamed(
-                              //         context, AppRoutes.registerRoute),
-                              //   ),
                             ],
                           ),
                   ),
@@ -161,22 +130,6 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                     ),
                     child: Column(
                       children: <Widget>[
-                        // cfg.getValue("allowDownload")
-                        //     ? ListTile(
-                        //         title: Text($t(context, 'download')),
-                        //         leading: Icon(
-                        //           Icons.download_sharp,
-                        //           size: 22,
-                        //         ),
-                        //         onTap: () => {
-                        //           Navigator.pushNamed(
-                        //               context, AppRoutes.downloadScreenRoute)
-                        //         },
-                        //       )
-                        //     :
-                        //      Divider(
-                        //         height: 0,
-                        //       ),
                         ListTile(
                           title: Text($t(
                             context,
@@ -197,15 +150,6 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                           ),
                           onTap: () => {},
                         ),
-                        // Divider(height: 0),
-                        // ListTile(
-                        //   title: Text($t(context, 'Contact us')),
-                        //   leading: Icon(
-                        //     Icons.help,
-                        //     size: 22,
-                        //   ),
-                        //   onTap: () => {Get.to(() => ContactPage())},
-                        // ),
                       ],
                     ),
                   ),
@@ -244,12 +188,15 @@ class UserAccountPage extends StatelessWidget with BaseMixins {
                         'mode_String',
                       )),
                       trailing: Switch(
+                          activeColor: secondary,
                           value: themeProvider.darkMode,
                           onChanged: (val) {
                             themeProvider.toggleChangeTheme();
                           }),
                       leading: Icon(
-                        Icons.star,
+                        themeProvider.darkMode
+                            ? Icons.light_mode
+                            : Icons.dark_mode,
                         size: 22,
                       ),
                       onTap: () => {},

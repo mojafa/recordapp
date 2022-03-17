@@ -4,7 +4,6 @@ import 'package:lottie/lottie.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
 import 'package:record_app/models/Album.dart';
 import 'package:record_app/providers/DownloadProvider.dart';
@@ -76,7 +75,7 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
                             });
                           },
                           child: SizedBox(
-                            height: 70,
+                            height: 60,
                             child: Lottie.asset('assets/down.json',
                                 repeat: isDownload),
                           ),
