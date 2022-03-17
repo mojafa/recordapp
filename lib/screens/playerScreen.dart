@@ -235,7 +235,8 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
           onPressed: () {
             downloadProvider.isDownloadSong(track)
                 ? downloadProvider.removeSong(track)
-                : downloadProvider.downloadAudio(track, context);
+                : downloadProvider.downloadAudio(
+                    track, context, playerProvider.currentAlbum);
             ;
           },
           icon: Icon(

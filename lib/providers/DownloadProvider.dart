@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:record_app/config/AppRoutes.dart';
 import 'package:record_app/mixins/BaseMixins.dart';
+import 'package:record_app/models/Album.dart';
 import 'package:record_app/models/Track.dart';
 import 'package:record_app/providers/BaseProvider.dart';
 import 'package:localstorage/localstorage.dart';
@@ -46,7 +48,7 @@ class DownloadProvider extends BaseProvider with BaseMixins {
     notifyListeners();
   }
 
-  downloadAudio(Track song, BuildContext context) async {
+  downloadAudio(Track song, BuildContext context, Album album) async {
     try {
       if (!isDownloadSong(song)) {
         getCurrenttime();
@@ -100,6 +102,25 @@ class DownloadProvider extends BaseProvider with BaseMixins {
           ).show(context);
           song.localPath = downloadPath;
 // TODO: Firebase set local path
+
+          final results = await FirebaseFirestore.instance
+              .collection('albums')
+              .doc(album.id.toString())
+              .get();
+
+          Album wholeAlbum = Album.fromJson(results.data());
+
+          List<Track> wholeTracks = wholeAlbum.tracks;
+          final selectedTrack = wholeTracks.firstWhere((e) => song.id == e.id);
+
+          selectedTrack.localPath = downloadPath;
+
+          wholeTracks[wholeTracks.indexOf(selectedTrack)] = selectedTrack;
+          await FirebaseFirestore.instance
+              .collection('albums')
+              .doc(album.id.toString())
+              .update({'tracks': wholeTracks.map((e) => e.toJson()).toList()});
+
           addToDownloadSong(song);
           notifyListeners();
         }

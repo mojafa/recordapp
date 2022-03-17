@@ -38,7 +38,7 @@ class TrackTileActions extends StatelessWidget with BaseMixins {
           );
         }
         if (value == 'download') {
-          downloadProvider.downloadAudio(track, context);
+          downloadProvider.downloadAudio(track, context, null);
         }
         if (value == 'remove') {
           downloadProvider.removeSong(track);

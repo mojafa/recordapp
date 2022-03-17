@@ -128,7 +128,8 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
                   InkWell(
                     onTap: () {
                       if (!download.isDownloadSong(widget.track)) {
-                        download.downloadAudio(widget.track, context);
+                        download.downloadAudio(
+                            widget.track, context, widget.album);
                       } else {
                         download.removeSong(widget.track);
                       }

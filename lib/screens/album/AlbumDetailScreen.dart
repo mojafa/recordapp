@@ -68,7 +68,7 @@ class _AlbumDetailScreenState extends State<AlbumDetailScreen> with BaseMixins {
                             for (var song in album.tracks) {
                               await Provider.of<DownloadProvider>(context,
                                       listen: false)
-                                  .downloadAudio(song, context);
+                                  .downloadAudio(song, context, album);
                             }
 
                             setState(() {
