@@ -170,7 +170,7 @@ class AboutScreen extends StatelessWidget {
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  color: Colors.blue,
+                  color: primary,
                   padding: EdgeInsets.symmetric(vertical: 5),
                   child: Center(
                     child: Text(

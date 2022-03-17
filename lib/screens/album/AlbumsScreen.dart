@@ -91,7 +91,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                 child: Column(
                   children: [
                     Row(children: [
@@ -102,7 +102,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage:
-                              AssetImage('assets/images/title1.jpeg'),
+                              AssetImage('assets/images/profile.jpeg'),
                         ),
                       ),
                       // SizedBox(
@@ -110,7 +110,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       //     child: Image.asset('assets/images/logo.png')),
                       Spacer(),
                       SizedBox(
-                        height: 55,
+                        height: 45,
                         child: Image.asset(
                           'assets/images/logo.png',
                           fit: BoxFit.fitHeight,
@@ -119,29 +119,20 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                       Spacer(),
                       SizedBox(
                         width: 40,
-                      )
-                      // Column(
-                      //   children: [
-                      //     Icon(
-                      //       Icons.play_arrow_outlined,
-                      //       size: 30,
-                      //       color: Theme.of(context).primaryColor,
-                      //     ),
-                      //     Text('Play All',
-                      //         style: TextStyle(
-                      //           fontSize: 14,
-                      //           color: Theme.of(context).iconTheme.color,
-                      //         ))
-                      //   ],
-                      // ),
-                      // IconButton(
-                      //   onPressed: () {},
-                      //   icon: Icon(
-                      //     Icons.share,
-                      //     size: 24,
-                      //   ),
-                      // ),
-                      // SizedBox(width: 15),
+                        child: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.download,
+                                size: 30,
+                                color: primary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 15),
                     ]),
                     SizedBox(height: 10),
                     Expanded(
@@ -155,7 +146,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                                 'HASSAN ALI KHAIRE',
                                 style: TextStyle(
                                   fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w900,
                                   color: Theme.of(context).primaryColor,
                                 ),
                               ),
@@ -169,8 +160,8 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                                 'SOOMALIYA',
                                 style: TextStyle(
                                     fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.green),
+                                    fontWeight: FontWeight.w900,
+                                    color: secondary),
                               ),
                             ],
                           ),
@@ -187,7 +178,8 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                                     );
                                   },
                                   child: SizedBox(
-                                    width: 150,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
                                     child: AlbumTile(
                                       album: staticAlbums[0],
                                       isAsset: true,
@@ -196,7 +188,8 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 15,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.03,
                                 ),
                                 GestureDetector(
                                   onTap: () {
@@ -206,7 +199,8 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                                     );
                                   },
                                   child: SizedBox(
-                                    width: 150,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
                                     child: AlbumTile(
                                       album: staticAlbums[1],
                                       isAsset: true,
@@ -318,18 +312,18 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                             margin: EdgeInsets.symmetric(vertical: 5),
                             child: Text('Hiigsiyada',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 15,
                                   color: Theme.of(context).iconTheme.color,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w300,
                                 )),
                           ),
                           Row(
                             children: [
                               Container(
-                                width: 80,
+                                width: MediaQuery.of(context).size.width * 0.1,
                                 height: 5,
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: secondary,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
@@ -402,18 +396,18 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                             margin: EdgeInsets.symmetric(vertical: 5),
                             child: Text('Gunaanad',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 15,
                                   color: Theme.of(context).iconTheme.color,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w300,
                                 )),
                           ),
                           Row(
                             children: [
                               Container(
-                                width: 60,
+                                width: MediaQuery.of(context).size.width * 0.1,
                                 height: 5,
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: secondary,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
@@ -421,7 +415,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                           ),
                           SizedBox(height: 10),
                           SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
+                              scrollDirection: Axis.vertical,
                               child: Row(children: [
                                 GestureDetector(
                                   onTap: () {
@@ -452,7 +446,7 @@ class AlbumsScreen extends StatelessWidget with BaseMixins {
                   bottom: 0,
                   child: Container(
                     width: size.width,
-                    color: Colors.blue,
+                    color: primary,
                     padding: EdgeInsets.symmetric(vertical: 5),
                     child: Center(
                       child: Text(

@@ -47,7 +47,7 @@ class AlbumTile extends StatelessWidget with BaseMixins {
             child: Text(
               album.title,
               style: TextStyle(
-                  fontSize: isAsset ? 14 : 12, fontWeight: FontWeight.w500),
+                  fontSize: isAsset ? 14 : 12, fontWeight: FontWeight.w600),
             ),
           ),
           if (!isAsset)

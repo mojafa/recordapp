@@ -22,8 +22,8 @@ class BaseImage extends StatelessWidget {
       overlayStops,
       overlayOpacity})
       : overlay = overlay ?? false,
-        overlayStops = overlayStops ?? [0.1, 0.5],
-        overlayOpacity = overlayOpacity ?? 0.2;
+        overlayStops = overlayStops ?? [0.1, 0.1],
+        overlayOpacity = overlayOpacity ?? 1.0;
 
   _buildOverlay(BuildContext context) => Container(
         decoration: new BoxDecoration(

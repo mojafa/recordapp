@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:record_app/config/AppColors.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 
 class TopCarousel extends StatefulWidget {
@@ -65,7 +66,7 @@ class _TopCarouselState extends State<TopCarousel> {
               child: BaseImage(
                 imageUrl: urlImage,
                 isAsset: true,
-                height: size.height * 0.33,
+                height: size.height * 0.3,
                 width: size.width,
                 radius: 10,
                 overlay: !widget.isAbout,
@@ -77,7 +78,7 @@ class _TopCarouselState extends State<TopCarousel> {
         ),
         Container(
             width: size.width,
-            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: List.generate(10, (index) => null)
@@ -94,7 +95,7 @@ class _TopCarouselState extends State<TopCarousel> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: (_current == entry.key
-                                ? Colors.green
+                                ? secondary
                                 : Theme.of(context).primaryColor)
                             .withOpacity(_current == entry.key ? 0.9 : 0.4)),
                   ),

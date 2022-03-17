@@ -71,7 +71,7 @@ class _TrackTileState extends State<TrackTile> with BaseMixins {
             subtitle: Row(
               children: [
                 Text(
-                  'Hassan Khaire',
+                  'Hassan Ali Khaire',
                   style: TextStyle(
                       fontSize: 10.0,
                       color: Theme.of(context).colorScheme.primaryVariant),

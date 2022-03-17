@@ -42,14 +42,8 @@ class _HomeScreenState extends State<HomeScreen>
             unselectedLabelColor: Colors.grey,
             tabs: <Widget>[
               Tab(
-                icon: Icon(Octicons.telescope),
+                icon: Icon(Octicons.home),
               ),
-              // Tab(
-              //   icon: Icon(SimpleLineIcons.book_open),
-              // ),
-              // Tab(
-              //   icon: Icon(Zocial.podcast),
-              // ),
               Tab(
                 icon: Icon(AntDesign.hearto),
               ),
@@ -117,27 +111,27 @@ class _MyBottomNavState extends State<MyBottomNav> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6),
             child: GNav(
-              rippleColor: Colors.green,
-              hoverColor: Colors.green,
+              rippleColor: secondary,
+              hoverColor: secondary,
               gap: 8,
               activeColor: Colors.white,
               iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 9),
               duration: Duration(milliseconds: 200),
-              tabBackgroundColor: primary,
-              color: primary,
+              tabBackgroundColor: secondary,
+              color: secondary,
               tabs: [
                 GButton(
-                  icon: Octicons.telescope,
+                  icon: Octicons.home,
                   text: 'Home',
                 ),
                 GButton(
                   icon: AntDesign.hearto,
-                  text: 'Likes',
+                  text: 'Favorites',
                 ),
                 GButton(
                   icon: Octicons.settings,
-                  text: 'Search',
+                  text: 'Settings',
                 ),
               ],
               selectedIndex: _selectedIndex,

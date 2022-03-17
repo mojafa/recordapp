@@ -40,7 +40,7 @@ class TrackCarouselTile extends StatelessWidget {
                   ),
                   subtitle: Transform(
                     transform: Matrix4.translationValues(-12, 0.0, 0.0),
-                    child: Text('Hassan Khaire',
+                    child: Text('Hassan Ali Khaire',
                         style: TextStyle(
                           fontSize: 12,
                         )),

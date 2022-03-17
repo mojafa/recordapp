@@ -6,6 +6,7 @@ import 'package:record_app/widgtes/Album/AlbumFavouriteButton.dart';
 import 'package:record_app/widgtes/Album/AlbumTileActions.dart';
 import 'package:record_app/widgtes/Common/BaseImage.dart';
 import 'package:record_app/widgtes/Search/BaseMessageScreen.dart';
+import 'package:record_app/models/empty_screen.dart';
 
 class AlbumsList extends StatelessWidget with BaseMixins {
   final List<Album> albums;
@@ -27,7 +28,7 @@ class AlbumsList extends StatelessWidget with BaseMixins {
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
           subtitle: Text(
-            ' ${album.tracks.length}  ${$t(context, 'tracks')} ',
+            ' ${album.tracks.length}  ${$t(context, 'Tracks')} ',
             style:
                 TextStyle(color: Theme.of(context).colorScheme.primaryVariant),
           ),
@@ -88,10 +89,15 @@ class AlbumsList extends StatelessWidget with BaseMixins {
                       return _buildTile(context, albums[index]);
                     },
                   )
-                : BaseMessageScreen(
-                    title: $t(context, 'no_albums'),
-                    icon: Icons.data_usage,
-                    subtitle: $t(context, 'msg_no_albums'),
+                : emptyScreen(
+                    context,
+                    3,
+                    'Nothing to',
+                    15.0,
+                    'Show Here',
+                    50,
+                    'Go and Add Something',
+                    23.0,
                   ),
           ),
         ),

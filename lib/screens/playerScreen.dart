@@ -118,7 +118,7 @@ class PlayerScreen extends StatelessWidget with BaseMixins {
                           children: <Widget>[
                             Text(
                               $t(context, 'now_playing'),
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(fontSize: 19),
                             ),
                             SizedBox(height: 5),
                             Text(playerProvider.currentAlbum.title,

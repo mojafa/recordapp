@@ -102,7 +102,7 @@ class _TrackBottomBarState extends State<TrackBottomBar>
                                   ),
                                   SizedBox(height: 5),
                                   Text(
-                                    'Admin',
+                                    'Hassan Ali Khaire',
                                     style: TextStyle(fontSize: 10),
                                   ),
                                 ],
